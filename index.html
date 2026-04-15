@@ -18,7 +18,7 @@
             --text-dim:#555;
             --grad:linear-gradient(135deg,#FF2D7B 0%,#9D4EDD 50%,#00F5FF 100%);
         }
-        html{scroll-behavior:smooth}
+        html{scroll-behavior:smooth;overflow-x:hidden;}
         body{font-family:'Chakra Petch',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
 
         /* SCANLINES OVERLAY */
@@ -188,7 +188,6 @@
         }
         @media(max-width:768px){
             .nav{width: 100%;box-sizing: border-box;padding:14px 20px;}  
-            .img {max-width: 100%;height: auto;}
             .nav-links{display:none}
             .ham-f{display:flex}
             .hero{padding:100px 20px 60px}
