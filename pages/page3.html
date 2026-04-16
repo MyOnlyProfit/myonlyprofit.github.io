@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intro Page</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--pink:#FF2D7B;
+--cyan:#00F5FF;
+--purple:#9D4EDD;
+--dark:#0A0A0B;
+--dark2:#111113;
+--dark3:#1A1A1D;
+--text:#E0E0E0;
+--text-dim:#888;
+--border:#2C2C2C;
+--grad:linear-gradient(135deg,#FF2D7B 0%,#9D4EDD 50%,#00F5FF 100%);
+}
+
+body{
+font-family:'Chakra Petch',sans-serif;
+background:var(--dark);
+color:var(--text);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:40px 16px;
+}
+
+/* SECTION BLOCK */
+.section-start{
+max-width:900px;
+width:100%;
+text-align:center;
+padding:80px 60px;
+border:1px solid var(--dark3);
+background:var(--dark2);
+border-radius:8px;
+margin-bottom:32px;
+position:relative;
+overflow:hidden;
+}
+
+.section-start::before{
+content:'';
+position:absolute;
+top:0;left:0;
+width:100%;
+height:3px;
+background:var(--grad);
+}
+
+.sec-num{
+font-family:'Space Mono',monospace;
+font-size:.6rem;
+letter-spacing:4px;
+color:var(--cyan);
+margin-bottom:12px;
+text-transform:uppercase;
+}
+
+.sec-title{
+font-family:'Space Mono',monospace;
+font-size:2rem;
+font-weight:700;
+text-transform:uppercase;
+line-height:1.2;
+margin-bottom:8px;
+}
+
+.sec-title .pk{color:var(--pink)}
+
+.sec-sub{
+font-size:.85rem;
+color:var(--text-dim);
+}
+
+/* PAGE */
+.page{
+max-width:900px;
+width:100%;
+background:var(--dark2);
+border:1px solid var(--dark3);
+border-radius:8px;
+padding:48px;
+position:relative;
+}
+
+.page::before{
+content:'';
+position:absolute;
+top:0;left:0;
+width:100%;
+height:2px;
+background:var(--grad);
+}
+
+p{
+font-size:.9rem;
+color:var(--text-dim);
+margin-bottom:14px;
+line-height:1.75;
+}
+
+.highlight-block{
+background:var(--dark3);
+border-left:2px solid var(--pink);
+padding:18px 20px;
+margin:20px 0;
+font-size:.85rem;
+color:var(--text);
+}
+
+.highlight-block.cyan{
+border-left-color:var(--cyan);
+}
+
+.highlight-block strong{
+color:var(--pink);
+}
+
+.highlight-block.cyan strong{
+color:var(--cyan);
+}
+
+.page-footer{
+margin-top:30px;
+display:flex;
+justify-content:space-between;
+font-family:'Space Mono',monospace;
+font-size:.7rem;
+color:var(--text-dim);
+}
+
+.page-num{
+background:var(--pink);
+color:var(--dark);
+padding:2px 10px;
+border-radius:3px;
+font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SECTION HEADER -->
+<div class="section-start">
+    <div class="sec-num">// Section 01</div>
+    <div class="sec-title">
+        WHY MOST CREATORS<br/>
+        STAY <span class="pk">BROKE</span>
+    </div>
+    <div class="sec-sub">
+        It's not about effort. It's about structure.
+    </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+<p>You post every day. You reply to every DM. You spend hours filming, editing, uploading — doing everything the internet tells you to do.</p>
+
+<p>And at the end of the month? $300. Maybe $500 if you're lucky.</p>
+
+<p>You're not lazy. You're not bad at this. You're just missing the one thing that separates creators who earn from creators who burn out.</p>
+
+<div class="highlight-block">
+<strong>A system.</strong><br/>
+Without a structure that turns attention into income, you're creating for free. Every post, every story, every DM — wasted energy without a pipeline to catch it.
+</div>
+
+<p>Agencies know this. That's exactly why they exist. They bolt on the system you're missing — the funnel, the pricing, the DM strategy, the upsells — and they charge you 50–70% of everything you earn for it.</p>
+
+<p>You do the work. They take the money. And you stay dependent.</p>
+
+<div class="highlight-block cyan">
+This guide eliminates that dependency entirely.<br/>
+<strong>You learn the system. You own the system. You keep 100%.</strong>
+</div>
+
+<div class="page-footer">
+<span>MY<span style="color:var(--cyan)">ONLY</span>PROFIT</span>
+<span class="page-num">01</span>
+</div>
+
+</div>
+
+</body>
+</html>
