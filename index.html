@@ -413,7 +413,7 @@
 <section class="pricing fd" id="price">
     <div class="center">
         <div class="sl">// INVESTMENT</div>
-        <h2 class="st">One payment. <span class="pk">Keep everything.</span></h2>
+        <h2 class="st" id="pricingHeading"><span style="color:inherit">One payment. </span><span class="pk">Keep everything.</span></h2>
     </div>
     <div class="p-grid">
 <div class="p-card">
@@ -895,6 +895,36 @@ function runGlitchCycle() {
 }
 
 setTimeout(runGlitchCycle, 1500);
+
+
+(function() {
+  const el = document.getElementById('pricingHeading');
+  const line1 = "One payment. ";
+  const line2 = "Keep everything.";
+  let idx = 0;
+
+function type() {
+    el.innerHTML = 'One payment. <span class="pk">' + line2.slice(0, idx) + '</span>';
+    idx++;
+    if (idx <= line2.length) {
+      setTimeout(type, 80);
+    } else {
+      setTimeout(() => {
+        el.style.textShadow = '4px 0 #FF2D7B, -4px 0 #00F5FF';
+        el.style.transform = 'translateX(3px)';
+        setTimeout(() => {
+          el.style.textShadow = '';
+          el.style.transform = '';
+        }, 120);
+      }, 300);
+    }
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(type, 300); }
+  }, { threshold: 0.4 });
+  obs.observe(document.getElementById('price'));
+})();
 
 </script>
 </body>
