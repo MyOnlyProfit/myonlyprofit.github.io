@@ -766,44 +766,37 @@ function selectCtaType(btn) {
 }
 
 // CTA Form Submit
-async function handleCtaSubmit(e) { 
-    e.preventDefault();
+async function handleCtaSubmit(e) {
+  e.preventDefault();
+  const submitBtn = document.getElementById('ctaSubmitBtn');
 
-    const submitBtn = document.getElementById('ctaSubmitBtn');
+  const data = {
+    email: document.getElementById('ctaEmail').value,
+    profile: document.getElementById('ctaProfile').value,
+    income: document.getElementById('ctaIncome').value,
+    message: document.getElementById('ctaMessage').value,
+    goals: document.getElementById('ctaGoals').value,
+    type: currentCtaType
+  };
 
-    const data = {
-        email: document.getElementById('ctaEmail').value,
-        profile: document.getElementById('ctaProfile').value,
-        income: document.getElementById('ctaIncome').value,
-        message: document.getElementById('ctaMessage').value,
-        goals: document.getElementById('ctaGoals').value,
-        type: currentCtaType
-    };
+  submitBtn.textContent = 'SENDING...';
 
-    submitBtn.textContent = 'SENDING...';
+  try {
+    const res = await fetch('https://project-ke2z2.vercel.app/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
 
-    try {
-        const res = await fetch('https://project-ke2z2.vercel.app/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-
-if (res.ok) {
-    submitBtn.textContent = '✓ SENT';
-    submitBtn.style.background = 'var(--cyan)';
-
-} else if (res.status === 429) {
-    submitBtn.textContent = 'TOO MANY REQUESTS';
-    submitBtn.style.background = '#ff3b3b';
-
-} else {
-    submitBtn.textContent = 'ERROR';
-}
-
-    } catch (err) {
-        submitBtn.textContent = 'FAILED';
+    if (res.ok) {
+      submitBtn.textContent = '✓ SENT';
+      submitBtn.style.background = 'var(--cyan)';
+    } else {
+      submitBtn.textContent = 'ERROR';
     }
+  } catch (err) {
+    submitBtn.textContent = 'FAILED';
+  }
 }
 
 
