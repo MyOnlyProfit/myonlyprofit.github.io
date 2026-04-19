@@ -162,6 +162,14 @@
         .pi-f h4{font-size:.85rem;font-weight:600;margin-bottom:2px}
         .pi-f p{font-size:.75rem;color:var(--text-dim);line-height:1.5}
 
+        .privacy-label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:.78rem;color:var(--text-dim);line-height:1.5;padding:4px 0;}
+        .privacy-label input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:16px;height:16px;min-width:16px;border:1px solid var(--dark3);background:var(--dark2);cursor:pointer;margin-top:2px;position:relative;transition:border-color .2s,background .2s;}
+        .privacy-label input[type="checkbox"]:checked{background:var(--pink);border-color:var(--pink);}
+        .privacy-label input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--dark);font-size:.75rem;font-weight:700;line-height:1;}
+        .privacy-label input[type="checkbox"]:focus{outline:1px solid var(--cyan);outline-offset:2px;}
+        .privacy-label a{color:var(--cyan);text-decoration:none;transition:color .2s;}
+        .privacy-label a:hover{color:var(--pink);}
+
         /* GLITCH */
         
        
@@ -430,7 +438,7 @@
         <li><span class="ck">✓</span> Predictable Income System</li>
         <li><span class="ck">✓</span> DM Conversion System</li>
     </ul>
-    <a href="#cta" class="p-btn-f out">START EARNING →</a>
+    <a href="https://buy.stripe.com/7sY6oGezm6Sc5mEasc57W05" class="p-btn-f out">START EARNING →</a>
 </div>
         <div class="p-card glow">
             <div class="pb">1_SPOT/WEEK</div>
@@ -608,28 +616,37 @@
         We'll review your OnlyFans profile and send a full strategy breakdown to your email — free.
     </p>
 
-    <form class="cta-form" id="ctaForm" onsubmit="handleCtaSubmit(event)">
-        <input type="email" id="ctaEmail" placeholder="your@email.com" required>
-        
-        <input type="text" id="ctaProfile" placeholder="Your OnlyFans profile link" required>
-        
-        <input type="text" id="ctaIncome" placeholder="Current monthly income (approx)" style="display:none">
-        
-        <textarea id="ctaMessage" placeholder="Your message..." style="display:none"></textarea>
-        
-        <textarea id="ctaGoals" placeholder="Tell us about your goals..." style="display:none"></textarea>
+  <form class="cta-form" id="ctaForm" onsubmit="handleCtaSubmit(event)">
+    <input type="email" id="ctaEmail" placeholder="your@email.com" required>
+    
+    <input type="text" id="ctaProfile" placeholder="Your OnlyFans profile link" required>
+    
+    <input type="text" id="ctaIncome" placeholder="Current monthly income (approx)" style="display:none">
+    
+    <textarea id="ctaMessage" placeholder="Your message..." style="display:none"></textarea>
+    
+    <textarea id="ctaGoals" placeholder="Tell us about your goals..." style="display:none"></textarea>
 
-        <button type="submit" class="btn-f pink cta-submit" id="ctaSubmitBtn" style="border:none;width:100%;justify-content:center">
-            GET FREE ANALYSIS →
-        </button>
-    </form>
+    <!-- PRIVACY CHECKBOX -->
+    <label class="privacy-label" id="privacyLabel">
+        <input type="checkbox" id="ctaPrivacy" required>
+        <span>
+            I have read and agree to the
+            <a href="privacy.html" target="_blank">Privacy Policy</a>
+        </span>
+    </label>
+
+    <button type="submit" class="btn-f pink cta-submit" id="ctaSubmitBtn" style="border:none;width:100%;justify-content:center">
+        GET FREE ANALYSIS →
+    </button>
+</form>
 </section>
 
 <footer class="footer">
     <a href="#" class="nav-logo" style="font-size:.8rem">MY<span>ONLY</span>PROFIT</a>
     <div class="fl">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
         <a href="#">@MyOnlyProfit</a>
     </div>
     <span class="copy">© 2026 MyOnlyProfit</span>
@@ -768,6 +785,13 @@ function selectCtaType(btn) {
 // CTA Form Submit
 async function handleCtaSubmit(e) {
   e.preventDefault();
+
+  const privacyChecked = document.getElementById('ctaPrivacy').checked;
+  if (!privacyChecked) {
+    alert('Please accept the Privacy Policy to continue.');
+    return;
+  }
+
   const submitBtn = document.getElementById('ctaSubmitBtn');
 
   const data = {
@@ -776,10 +800,13 @@ async function handleCtaSubmit(e) {
     income: document.getElementById('ctaIncome').value,
     message: document.getElementById('ctaMessage').value,
     goals: document.getElementById('ctaGoals').value,
-    type: currentCtaType
+    type: currentCtaType,
+    privacyAccepted: true,
+    timestamp: new Date().toISOString()
   };
 
   submitBtn.textContent = 'SENDING...';
+  submitBtn.disabled = true;
 
   try {
     const res = await fetch('https://project-ke2z2.vercel.app/api/contact', {
@@ -791,14 +818,16 @@ async function handleCtaSubmit(e) {
     if (res.ok) {
       submitBtn.textContent = '✓ SENT';
       submitBtn.style.background = 'var(--cyan)';
+      submitBtn.style.color = 'var(--dark)';
     } else {
-      submitBtn.textContent = 'ERROR';
+      submitBtn.textContent = 'ERROR — TRY AGAIN';
+      submitBtn.disabled = false;
     }
   } catch (err) {
-    submitBtn.textContent = 'FAILED';
+    submitBtn.textContent = 'FAILED — TRY AGAIN';
+    submitBtn.disabled = false;
   }
 }
-
 
 // PEEK INSIDE
 const peekPages = [
