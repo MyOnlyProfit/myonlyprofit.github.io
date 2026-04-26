@@ -312,6 +312,12 @@
         linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.34) 38%, rgba(0,0,0,.92) 100%);
       pointer-events:none;
     }
+    .hero .video-filter {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* change opacity as desired */
+    z-index: 1;
+    }
 
     .hero::after{
       content:"";
@@ -1265,6 +1271,7 @@
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="video/hero-background.mp4" type="video/mp4" />
     </video>
+    <div class="video-filter"></div>
     <div class="hero-overlay"></div>
 
     <div class="hero-meta hero-meta-left">Issue 01</div>
