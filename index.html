@@ -1974,74 +1974,114 @@
     });
 
     // ── Contact form type selector ──
-    let currentContactType = 'analysis';
+// ── CTA type selector (NEW version of contact system) ──
+let currentCtaType = 'analysis';
 
-    function selectContactType(btn) {
-      document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentContactType = btn.dataset.type;
+function selectCtaType(btn) {
+  document.querySelectorAll('.cta-sel-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 
-      const fieldProfile = document.getElementById('fieldProfile');
-      const fieldIncome  = document.getElementById('fieldIncome');
-      const fieldGoals   = document.getElementById('fieldGoals');
-      const fieldMessage = document.getElementById('fieldMessage');
-      const subtitle     = document.getElementById('contactSubtitle');
-      const submitBtn    = document.getElementById('contactSubmitBtn');
-      const profileInput = document.getElementById('contactProfile');
-      const messageInput = document.getElementById('contactMessage');
+  currentCtaType = btn.dataset.type;
 
-      [fieldProfile, fieldIncome, fieldGoals, fieldMessage].forEach(f => {
-        if (f) f.classList.add('form-field-hidden');
-      });
+  const profileInput = document.getElementById('ctaProfile');
+  const incomeInput  = document.getElementById('ctaIncome');
+  const goalsInput   = document.getElementById('ctaGoals');
+  const messageInput = document.getElementById('ctaMessage');
+  const subtitle     = document.getElementById('ctaSubtitle');
+  const submitBtn    = document.getElementById('ctaSubmitBtn');
 
-      if (profileInput) profileInput.removeAttribute('required');
-      if (messageInput) messageInput.removeAttribute('required');
+  // hide all optional fields (same logic as old system)
+  [profileInput, incomeInput, goalsInput, messageInput].forEach(el => {
+    if (el) el.style.display = 'none';
+  });
 
-      if (currentContactType === 'analysis') {
-        if (fieldProfile) fieldProfile.classList.remove('form-field-hidden');
-        if (profileInput) profileInput.setAttribute('required', 'required');
-        subtitle.textContent = "We'll review your OnlyFans profile and send a full strategy breakdown to your email — completely free.";
-        submitBtn.textContent = 'Get Free Analysis →';
-      } else if (currentContactType === 'pro') {
-        if (fieldProfile) fieldProfile.classList.remove('form-field-hidden');
-        if (fieldIncome) fieldIncome.classList.remove('form-field-hidden');
-        if (fieldGoals) fieldGoals.classList.remove('form-field-hidden');
-        if (profileInput) profileInput.setAttribute('required', 'required');
-        subtitle.textContent = 'Apply for a 1-on-1 Empire spot — limited to one creator per week.';
-        submitBtn.textContent = 'Apply for Empire →';
-      } else if (currentContactType === 'question') {
-        if (fieldMessage) fieldMessage.classList.remove('form-field-hidden');
-        if (messageInput) messageInput.setAttribute('required', 'required');
-        subtitle.textContent = 'Anything on your mind — we reply within 24 hours.';
-        submitBtn.textContent = 'Send Message →';
-      }
+  // remove required state
+  if (profileInput) profileInput.removeAttribute('required');
+  if (messageInput) messageInput.removeAttribute('required');
+
+  // ── ANALYSIS ──
+  if (currentCtaType === 'analysis') {
+    if (profileInput) profileInput.style.display = 'block';
+    if (profileInput) profileInput.setAttribute('required', 'required');
+
+    subtitle.textContent =
+      "We'll review your OnlyFans profile and send a full strategy breakdown to your email — free.";
+
+    submitBtn.textContent = 'GET FREE ANALYSIS →';
+  }
+
+  // ── PRO ──
+  else if (currentCtaType === 'pro') {
+    if (profileInput) profileInput.style.display = 'block';
+    if (incomeInput) incomeInput.style.display = 'block';
+    if (goalsInput) goalsInput.style.display = 'block';
+
+    if (profileInput) profileInput.setAttribute('required', 'required');
+
+    subtitle.textContent =
+      'Apply for a 1-on-1 PRO spot — limited to one creator per week.';
+
+    submitBtn.textContent = 'APPLY FOR PRO →';
+  }
+
+  // ── QUESTION ──
+  else if (currentCtaType === 'question') {
+    if (messageInput) messageInput.style.display = 'block';
+    if (messageInput) messageInput.setAttribute('required', 'required');
+
+    subtitle.textContent =
+      'Anything on your mind — we reply within 24 hours.';
+
+    submitBtn.textContent = 'SEND MESSAGE →';
+  }
+}
+
+
+// ── CTA submit (clean version of old handler) ──
+async function handleCtaSubmit(e) {
+  e.preventDefault();
+
+  if (!document.getElementById('ctaPrivacy').checked) {
+    alert('Please accept the Privacy Policy to continue.');
+    return;
+  }
+
+  const submitBtn = document.getElementById('ctaSubmitBtn');
+  const originalText = submitBtn.textContent;
+
+  submitBtn.textContent = 'SENDING...';
+  submitBtn.disabled = true;
+
+  const data = {
+    email: document.getElementById('ctaEmail').value,
+    profile: document.getElementById('ctaProfile').value,
+    income: document.getElementById('ctaIncome').value,
+    goals: document.getElementById('ctaGoals').value,
+    message: document.getElementById('ctaMessage').value,
+    type: currentCtaType,
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch('https://project-ke2z2.vercel.app/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      submitBtn.textContent = '✓ SENT';
+      submitBtn.style.background = 'var(--cyan)';
+      submitBtn.style.color = 'var(--dark)';
+    } else {
+      submitBtn.textContent = 'ERROR — TRY AGAIN';
+      submitBtn.disabled = false;
     }
-
-    // ── Contact form submit ──
-    async function handleContactSubmit(e) {
-      e.preventDefault();
-      if (!document.getElementById('contactPrivacy').checked) {
-        alert('Please accept the Privacy Policy to continue.');
-        return;
-      }
-      const submitBtn = document.getElementById('contactSubmitBtn');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'SENDING...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        submitBtn.innerHTML = `✓ THANK YOU — WE'LL REPLY SOON`;
-        submitBtn.style.background = 'linear-gradient(135deg, #9bb8c6, #dbe7ed)';
-        setTimeout(() => {
-          document.getElementById('contactForm').reset();
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.disabled = false;
-          const analysisBtn = document.querySelector('.contact-type-btn');
-          if (analysisBtn) selectContactType(analysisBtn);
-        }, 2800);
-      }, 1250);
-    }
+  } catch (err) {
+    submitBtn.textContent = 'FAILED — TRY AGAIN';
+    submitBtn.disabled = false;
+  }
+}
 
     // ── Smooth anchors ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
