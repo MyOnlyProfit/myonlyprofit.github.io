@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — MYONLYPROFIT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700;6..96,900&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000;
+      --panel: #080808;
+      --panel-2: #0d0d0d;
+      --text: #f4f4ef;
+      --muted: #9d9d96;
+      --soft: #6c6c66;
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --accent: #9bb8c6;
+      --accent-3: #dbe7ed;
+      --shadow: 0 30px 90px rgba(0,0,0,.65);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) #000; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), #fff, var(--accent)); border-radius: 12px; }
+    ::selection { background: rgba(155,184,198,.28); color: #fff; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* subtle grid lines */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .35;
+      background: linear-gradient(
+        to right,
+        transparent 0%, transparent 24.8%,
+        rgba(255,255,255,0.025) 24.9%, rgba(255,255,255,0.025) 25%,
+        transparent 25.1%, transparent 74.8%,
+        rgba(255,255,255,0.025) 74.9%, rgba(255,255,255,0.025) 75%,
+        transparent 75.1%
+      );
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 22px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--accent-3); }
+    .nav-back {
+      font-size: .65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--soft);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+    .nav-back:hover { color: var(--accent-3); }
+
+    /* PAGE */
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 130px 40px 100px;
+    }
+
+    .page-eyebrow {
+      font-size: .62rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 3.4rem;
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+    h1 .accent { color: var(--accent-3); font-style: italic; }
+
+    .meta {
+      font-size: .72rem;
+      letter-spacing: 2px;
+      color: var(--soft);
+      margin-bottom: 56px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* SECTION HEADINGS */
+    h2 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-3);
+      margin: 52px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    h2::before {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      flex-shrink: 0;
+    }
+    h2 .num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,.3);
+      margin-right: 4px;
+    }
+
+    p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      line-height: 1.82;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+    ul li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--muted);
+      padding: 7px 0 7px 22px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      line-height: 1.7;
+      position: relative;
+    }
+    ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      font-size: .5rem;
+      color: var(--accent);
+    }
+    ul li strong { color: var(--text); }
+
+    /* HIGHLIGHT BOX */
+    .callout {
+      background: linear-gradient(135deg, #080808 0%, #0c0c0c 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 2px solid var(--accent-3);
+      padding: 26px 28px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .callout::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--accent-3), transparent);
+      opacity: .4;
+    }
+    .callout p {
+      margin-bottom: 0;
+      color: #d5d5cf;
+    }
+    .callout strong { color: var(--accent-3); }
+
+    /* CONTACT BOX */
+    .contact-box {
+      background: linear-gradient(135deg, #070707 0%, #0b0b0b 100%);
+      border: 1px solid var(--line-strong);
+      padding: 36px;
+      margin-top: 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #fff, var(--accent), transparent);
+      opacity: .3;
+    }
+    .contact-box-label {
+      font-size: .65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .contact-box a {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.3rem;
+      color: var(--accent-3);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color .3s ease;
+    }
+    .contact-box a:hover { color: #fff; }
+
+    /* FOOTER */
+    .footer {
+      padding: 52px 50px 32px;
+      border-top: 1px solid var(--line);
+      background: #000;
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .footer-logo span { color: var(--accent-3); }
+    .footer-links-row {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-links-row a {
+      color: var(--soft);
+      text-decoration: none;
+      font-size: .68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color .3s ease;
+    }
+    .footer-links-row a:hover { color: #fff; }
+    .footer-copy {
+      font-size: .64rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,.22);
+    }
+
+    strong { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 18px 20px; }
+      .wrap { padding: 110px 20px 80px; }
+      h1 { font-size: 2.4rem; }
+      .footer { padding: 40px 20px 24px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">MY<span>ONLYPROFIT</span></a>
+  <a href="index.html" class="nav-back">← Back to Site</a>
+</nav>
+
+<div class="wrap">
+  <span class="page-eyebrow">Legal</span>
+  <h1>Terms of <span class="accent">Service</span></h1>
+  <p class="meta">Last updated: April 2026 &nbsp;·&nbsp; Effective immediately upon purchase</p>
+
+  <h2><span class="num">01</span> Agreement</h2>
+  <p>By purchasing any product from MYONLYPROFIT ("we", "us", "our") — accessible at myonlyprofit.com — you ("the customer", "you") agree to be bound by these Terms of Service in full. If you do not agree, do not complete your purchase.</p>
+
+  <h2><span class="num">02</span> Products</h2>
+  <p>MYONLYPROFIT sells digital strategy guides, frameworks, and educational materials relating to content creator monetisation. Our current product suite includes:</p>
+  <ul>
+    <li><strong>Dynasty</strong> — A digital quick-start strategy guide delivered as a password-protected HTML file, designed to open instantly in any browser (including Microsoft Edge). Delivered automatically by email upon purchase.</li>
+    <li><strong>Kingdom</strong> — A comprehensive self-guided digital strategy system delivered as a password-protected web document, covering traffic, content, DM conversion, and revenue growth.</li>
+    <li><strong>Empire™</strong> — The Kingdom system plus a personalised done-with-you consulting engagement with daily 1-on-1 support.</li>
+  </ul>
+  <p>All products are delivered digitally. Upon confirmed payment via Stripe, you will automatically receive an email containing a password that grants access to your purchased materials on our website.</p>
+
+  <h2><span class="num">03</span> No Refund Policy</h2>
+  <div class="callout">
+    <p><strong>All sales are final. We do not offer refunds under any circumstances.</strong><br><br>
+    Because our products are digital and access is granted immediately upon purchase (via automated password delivery), the full content is made available at the moment of payment. By completing your purchase, you acknowledge and accept that no refund will be issued — regardless of whether the materials have been accessed, downloaded, or used.</p>
+  </div>
+  <p>This policy complies with EU consumer rights law under Article 16(m) of Directive 2011/83/EU, which exempts digital content from the right of withdrawal once delivery has begun with the consumer's prior express consent — which you provide by completing the checkout.</p>
+
+  <h2><span class="num">04</span> Delivery</h2>
+  <p>After successful payment through Stripe:</p>
+  <ul>
+    <li>An automated email is sent to the address you provide at checkout</li>
+    <li>This email contains a password to access your purchased content on myonlyprofit.com</li>
+    <li>Dynasty purchasers receive an HTML file that opens directly in any browser — no additional software required</li>
+    <li>Delivery is typically instant but may take up to 15 minutes</li>
+    <li>Check your spam / junk folder if you do not receive the email</li>
+    <li>If you have not received your access within 1 hour, contact us at system@myonlyprofit.com</li>
+  </ul>
+
+  <h2><span class="num">05</span> Intellectual Property</h2>
+  <p>All content within our products — including text, strategies, systems, frameworks, diagrams, and structure — is the exclusive intellectual property of MYONLYPROFIT and is protected by copyright law.</p>
+  <ul>
+    <li>You may not copy, reproduce, share, resell, or distribute any part of our materials</li>
+    <li>You may not repackage or present our content as your own</li>
+    <li>Access is granted for personal, non-commercial use only</li>
+    <li>Violations will be pursued under applicable copyright law</li>
+  </ul>
+  <p>To report misuse or unauthorised distribution, contact: system@myonlyprofit.com</p>
+
+  <h2><span class="num">06</span> Payments</h2>
+  <p>All payments are processed securely by Stripe, Inc. MYONLYPROFIT does not store your card details. Prices are listed in Euros (€). By purchasing, you authorise Stripe to charge the stated amount to your selected payment method.</p>
+
+  <h2><span class="num">07</span> Disclaimer & Results</h2>
+  <p>Our materials contain strategy, education, and frameworks based on real creator data. However:</p>
+  <ul>
+    <li>Results are not guaranteed and will vary based on individual effort, niche, and market conditions</li>
+    <li>We make no promise of specific income, follower counts, or business outcomes</li>
+    <li>Testimonials and case studies reflect individual experiences and are not typical results</li>
+    <li>Our content is for informational and educational purposes only</li>
+  </ul>
+
+  <h2><span class="num">08</span> Eligibility</h2>
+  <p>By purchasing, you confirm that you are at least 18 years of age. Our products relate to adult content creation and monetisation — they are not intended for or sold to minors.</p>
+
+  <h2><span class="num">09</span> Governing Law</h2>
+  <p>These Terms are governed by the laws of Finland. Any disputes arising from or related to these Terms shall be subject to the exclusive jurisdiction of Finnish courts.</p>
+
+  <h2><span class="num">10</span> Changes to These Terms</h2>
+  <p>We may update these Terms at any time. The updated version will be published at myonlyprofit.com/terms.html with a new effective date. Continued use of our website or products after changes constitutes acceptance.</p>
+
+  <h2><span class="num">11</span> Contact</h2>
+  <div class="contact-box">
+    <span class="contact-box-label">Questions about these Terms?</span>
+    <a href="mailto:system@myonlyprofit.com">system@myonlyprofit.com</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">MY<span>ONLYPROFIT</span></a>
+    <div class="footer-links-row">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <span class="footer-copy">© 2026 MYONLYPROFIT. ALL RIGHTS RESERVED.</span>
+  </div>
+</footer>
+
+</body>
+</html>
