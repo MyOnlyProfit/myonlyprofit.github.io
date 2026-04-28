@@ -4,346 +4,199 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>EMPIRE — MYONLYPROFIT Complete Strategy Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700;6..96,900&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ─── DESIGN TOKENS ─── */
 :root {
-  --bg: #000;
-  --panel: #080808;
-  --panel-2: #0d0d0d;
-  --text: #f4f4ef;
-  --muted: #9d9d96;
-  --soft: #6c6c66;
-  --line: rgba(255,255,255,0.08);
-  --line-strong: rgba(255,255,255,0.14);
-  --accent: #9bb8c6;
-  --accent-3: #dbe7ed;
-  --gold: #c8a96e;
-  --gold-soft: #f5e6c8;
+  --bg: #000; --panel: #080808; --panel-2: #0d0d0d;
+  --text: #f4f4ef; --muted: #9d9d96; --soft: #6c6c66;
+  --line: rgba(255,255,255,0.08); --line-strong: rgba(255,255,255,0.14);
+  --accent: #9bb8c6; --accent-3: #dbe7ed;
 }
-
-/* ─── RESET ─── */
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) #000;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:#000;}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),#fff,var(--accent));border-radius:12px;}
-body{font-family:'Montserrat',sans-serif;background:#000;color:var(--text);overflow-x:hidden;}
-
-/* ─── NOISE OVERLAY ─── */
-body::after{
-  content:"";position:fixed;inset:0;z-index:999;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity:.025;background-size:180px;
+* { -webkit-user-select: none; -moz-user-select: none; user-select: none; margin: 0; padding: 0; box-sizing: border-box; }
+input, textarea { -webkit-user-select: text; user-select: text; }
+img { -webkit-user-drag: none; pointer-events: none; }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) #000; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), #fff, var(--accent)); border-radius: 12px; }
+body { font-family: 'Montserrat', sans-serif; background: #000; color: var(--text); overflow-x: hidden; }
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .3;
+  background: linear-gradient(to right, transparent 0%, transparent 24.8%, rgba(255,255,255,0.022) 24.9%, rgba(255,255,255,0.022) 25.1%, transparent 25.2%, transparent 74.8%, rgba(255,255,255,0.022) 74.9%, rgba(255,255,255,0.022) 75.1%, transparent 75.2%);
 }
-
-/* ─── PROGRESS BAR ─── */
-#prog{position:fixed;top:0;left:0;height:1.5px;background:linear-gradient(90deg,var(--accent),var(--accent-3),#fff);z-index:1001;width:0;transition:width .12s linear;}
-
-/* ─── GRID LINES ─── */
-body::before{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    linear-gradient(90deg, transparent 0%, transparent 24.8%, rgba(255,255,255,.018) 24.9%, rgba(255,255,255,.018) 25.1%, transparent 25.2%,
-    transparent 74.8%, rgba(255,255,255,.018) 74.9%, rgba(255,255,255,.018) 75.1%, transparent 75.2%);
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 999; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .025; background-size: 180px;
 }
+.progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-3), #fff); z-index: 1001; transition: width .1s linear; width: 0%; }
 
-/* ─── NAV ─── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:22px 60px;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(0,0,0,.92);backdrop-filter:blur(28px);
-  border-bottom:1px solid var(--line);transition:padding .4s ease;
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 52px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,.92); backdrop-filter: blur(24px); border-bottom: 1px solid var(--line); transition: padding .4s ease; }
+.nav.scrolled { padding: 14px 52px; }
+.nav-logo { text-decoration: none; color: #fff; font-family: 'Bodoni Moda', serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+.nav-logo span { color: var(--accent-3); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: var(--soft); text-decoration: none; font-size: .6rem; letter-spacing: 3px; text-transform: uppercase; transition: color .3s ease; cursor: pointer; }
+.nav-links a:hover { color: var(--accent-3); }
+.nav-cta { border: 1px solid var(--line-strong); color: var(--muted) !important; padding: 8px 20px; transition: all .3s ease !important; }
+.nav-cta:hover { border-color: var(--accent-3) !important; color: var(--accent-3) !important; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 1100; }
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--muted); transition: all .3s ease; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--accent-3); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--accent-3); }
+
+/* MOBILE MENU */
+.mobile-menu { position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,.97); backdrop-filter: blur(24px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { color: var(--soft); text-decoration: none; font-size: .62rem; letter-spacing: 5px; text-transform: uppercase; padding: 18px 40px; width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,.04); transition: color .3s ease, background .3s ease; cursor: pointer; display: block; }
+.mobile-menu a:first-child { border-top: 1px solid rgba(255,255,255,.04); }
+.mobile-menu a:hover { color: var(--accent-3); background: rgba(155,184,198,.04); }
+
+/* HERO */
+.empire-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
+.empire-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(155,184,198,.07) 0%, transparent 68%); pointer-events: none; }
+.empire-hero::after { content: ""; position: absolute; inset: 28px; border: 1px solid rgba(255,255,255,.06); pointer-events: none; }
+.hero-corner { position: absolute; width: 48px; height: 48px; opacity: .4; }
+.hero-corner.tl { top: 28px; left: 28px; border-top: 1px solid var(--accent-3); border-left: 1px solid var(--accent-3); }
+.hero-corner.tr { top: 28px; right: 28px; border-top: 1px solid var(--accent-3); border-right: 1px solid var(--accent-3); }
+.hero-corner.bl { bottom: 28px; left: 28px; border-bottom: 1px solid var(--accent-3); border-left: 1px solid var(--accent-3); }
+.hero-corner.br { bottom: 28px; right: 28px; border-bottom: 1px solid var(--accent-3); border-right: 1px solid var(--accent-3); }
+.hero-crown { font-size: 3.2rem; margin-bottom: 28px; opacity: .8; animation: floatCrown 4s ease-in-out infinite; }
+@keyframes floatCrown { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
+.hero-eyebrow { font-size: .58rem; letter-spacing: 8px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 20px; }
+.hero-title { font-family: 'Bodoni Moda', serif; font-size: clamp(3.8rem, 11vw, 7.5rem); font-weight: 900; letter-spacing: 12px; color: var(--text); line-height: 1; margin-bottom: 8px; white-space: nowrap; }
+.hero-title span { color: var(--accent-3); font-style: italic; }
+.hero-sub-label { font-size: .58rem; letter-spacing: 6px; text-transform: uppercase; color: var(--soft); display: block; margin-bottom: 32px; }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 2.5vw, 1.38rem); color: var(--muted); max-width: 640px; line-height: 1.78; margin-bottom: 44px; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 52px; }
+.badge { border: 1px solid var(--line-strong); color: var(--muted); padding: 10px 22px; font-size: .56rem; letter-spacing: 3px; text-transform: uppercase; transition: all .35s ease; cursor: pointer; }
+.badge:hover { border-color: var(--accent-3); color: var(--accent-3); }
+.scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
+.scroll-hint span { font-size: .5rem; letter-spacing: 4px; text-transform: uppercase; color: var(--soft); white-space: nowrap; }
+.scroll-arrow { width: 1px; height: 44px; background: linear-gradient(180deg, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)} }
+
+/* SECTION */
+.section-break { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: .25; }
+section.book-section { min-height: 100vh; padding: 130px 52px 100px; max-width: 1100px; margin: 0 auto; position: relative; }
+
+/* SECTION BANNER */
+.section-banner { text-align: center; padding: 80px 60px; border: 1px solid var(--line); background: rgba(155,184,198,.025); margin-bottom: 32px; position: relative; overflow: hidden; }
+.section-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-3), var(--accent), transparent); }
+.section-banner .sec-num { font-size: .58rem; text-transform: uppercase; letter-spacing: 4px; color: var(--soft); margin-bottom: 12px; }
+.section-banner .sec-title { font-family: 'Bodoni Moda', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; text-transform: uppercase; line-height: 1.2; margin-bottom: 8px; }
+.section-banner .sec-title .i { color: var(--accent-3); font-style: italic; }
+.section-banner .sec-sub { font-size: .85rem; color: var(--muted); max-width: 520px; margin: 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.75; }
+
+/* PAGE CARD */
+.page-card { background: var(--panel); border: 1px solid var(--line); padding: 48px 56px; margin-bottom: 28px; position: relative; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.page-card.visible { opacity: 1; transform: translateY(0); }
+.page-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+
+/* HEADINGS */
+h2 { font-family: 'Bodoni Moda', serif; font-size: .95rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-3); margin: 52px 0 18px; display: flex; align-items: center; gap: 14px; }
+h2::before { content: ""; display: block; width: 28px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); flex-shrink: 0; }
+h2:first-child { margin-top: 0; }
+.num { font-family: 'Montserrat', sans-serif; font-size: .52rem; font-weight: 600; letter-spacing: 3px; color: rgba(255,255,255,.22); }
+p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.82; color: var(--muted); margin-bottom: 16px; }
+strong { color: var(--text); }
+
+/* TOC */
+.toc-list { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+.toc-section-head { font-size: .58rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin: 20px 0 4px; font-family: 'Montserrat', sans-serif; }
+.toc-section-head:first-child { margin-top: 0; }
+.toc-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.035); }
+.toc-item a { color: var(--accent-3); text-decoration: none; transition: color .2s; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+.toc-item a:hover { color: #fff; }
+.toc-item span { color: var(--soft); font-size: .68rem; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; flex-shrink: 0; margin-left: 16px; }
+
+/* HIGHLIGHT */
+.highlight { background: rgba(155,184,198,.04); border-left: 2px solid var(--accent-3); padding: 22px 26px; margin: 24px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.82; color: var(--text); }
+
+/* PAGE FOOTER */
+.page-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: .68rem; color: var(--soft); font-family: 'Montserrat', sans-serif; letter-spacing: 1px; flex-wrap: wrap; gap: 8px; }
+.page-num { background: var(--accent-3); color: #000; padding: 2px 10px; font-weight: 700; font-size: .7rem; letter-spacing: 1px; }
+
+/* TOC FLOAT DOTS */
+.toc-float { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 800; display: flex; flex-direction: column; gap: 8px; }
+.toc-dot { width: 6px; height: 6px; border-radius: 50%; background: #222; border: 1px solid var(--soft); cursor: pointer; transition: all .3s ease; position: relative; }
+.toc-dot:hover, .toc-dot.active { background: var(--accent-3); border-color: var(--accent-3); transform: scale(1.4); }
+.toc-dot .toc-tip { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.92); border: 1px solid var(--line-strong); padding: 6px 12px; white-space: nowrap; font-size: .52rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-3); opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.toc-dot:hover .toc-tip { opacity: 1; }
+
+/* FOOTER */
+.footer { padding: 52px 52px 32px; border-top: 1px solid var(--line); background: #000; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.footer-logo { text-decoration: none; color: #fff; font-family: 'Bodoni Moda', serif; font-size: 1.15rem; letter-spacing: 3px; text-transform: uppercase; }
+.footer-logo span { color: var(--accent-3); }
+.footer-links { display: flex; gap: 28px; }
+.footer-links a { color: var(--soft); text-decoration: none; font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; transition: color .3s ease; }
+.footer-links a:hover { color: #fff; }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .nav { padding: 14px 20px; }
+  .nav.scrolled { padding: 11px 20px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  section.book-section { padding: 90px 18px 70px; }
+  .page-card { padding: 28px 18px; }
+  .section-banner { padding: 50px 24px; }
+  .toc-float { display: none; }
+  .scroll-hint { display: none; }
 }
-.nav.scrolled{padding:14px 60px;}
-.nav-logo{text-decoration:none;color:#fff;font-family:'Bodoni Moda',serif;font-size:1.1rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;}
-.nav-logo span{color:var(--accent-3);}
-.nav-links{display:flex;gap:32px;align-items:center;}
-.nav-links a{color:var(--soft);text-decoration:none;font-size:.55rem;letter-spacing:3px;text-transform:uppercase;transition:color .3s;cursor:pointer;}
-.nav-links a:hover{color:var(--accent-3);}
-.nav-cta{border:1px solid var(--line-strong);color:var(--muted)!important;padding:9px 22px;transition:all .3s!important;}
-.nav-cta:hover{border-color:var(--accent-3)!important;color:var(--accent-3)!important;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:1100;}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--muted);transition:all .3s;}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--accent-3);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--accent-3);}
-.mobile-menu{
-  position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.97);backdrop-filter:blur(24px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
-.mobile-menu.open{opacity:1;pointer-events:all;}
-.mobile-menu a{
-  color:var(--soft);text-decoration:none;font-size:.6rem;letter-spacing:5px;text-transform:uppercase;
-  padding:20px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);
-  transition:color .3s,background .3s;cursor:pointer;display:block;
-}
-.mobile-menu a:hover{color:var(--accent-3);background:rgba(155,184,198,.04);}
-.mobile-menu a:first-child{border-top:1px solid rgba(255,255,255,.04);}
-
-/* ─── FLOATING TOC DOTS ─── */
-.toc-float{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:800;display:flex;flex-direction:column;gap:10px;}
-.toc-dot{width:6px;height:6px;border-radius:50%;background:#111;border:1px solid var(--soft);cursor:pointer;transition:all .3s;position:relative;}
-.toc-dot:hover,.toc-dot.active{background:var(--accent-3);border-color:var(--accent-3);transform:scale(1.5);}
-.toc-dot .tip{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.94);border:1px solid var(--line-strong);padding:6px 14px;white-space:nowrap;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-3);opacity:0;pointer-events:none;transition:opacity .2s;}
-.toc-dot:hover .tip{opacity:1;}
-
-/* ─── HERO ─── */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:120px 40px 90px;position:relative;overflow:hidden;
-}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(155,184,198,.08) 0%,transparent 65%);pointer-events:none;}
-.hero::after{content:"";position:absolute;inset:32px;border:1px solid rgba(255,255,255,.055);pointer-events:none;}
-.hero-corner{position:absolute;width:48px;height:48px;opacity:.4;}
-.hero-corner.tl{top:32px;left:32px;border-top:1px solid var(--accent-3);border-left:1px solid var(--accent-3);}
-.hero-corner.tr{top:32px;right:32px;border-top:1px solid var(--accent-3);border-right:1px solid var(--accent-3);}
-.hero-corner.bl{bottom:32px;left:32px;border-bottom:1px solid var(--accent-3);border-left:1px solid var(--accent-3);}
-.hero-corner.br{bottom:32px;right:32px;border-bottom:1px solid var(--accent-3);border-right:1px solid var(--accent-3);}
-.hero-crown{font-size:3rem;margin-bottom:32px;animation:float 4s ease-in-out infinite;display:block;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.hero-eye{font-size:.56rem;letter-spacing:9px;text-transform:uppercase;color:var(--accent);margin-bottom:22px;display:block;animation:fadeUp .8s ease both;}
-.hero-title{
-  font-family:'Bodoni Moda',serif;font-size:clamp(3.6rem,12vw,8rem);
-  font-weight:900;letter-spacing:14px;line-height:1;margin-bottom:10px;
-  animation:fadeUp .8s .15s ease both;white-space:nowrap;
-}
-.hero-title .i{color:var(--accent-3);font-style:italic;}
-.hero-subtitle{font-size:.56rem;letter-spacing:6px;text-transform:uppercase;color:var(--soft);margin-bottom:36px;display:block;animation:fadeUp .8s .3s ease both;}
-.hero-tagline{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,2.2vw,1.3rem);
-  color:var(--muted);max-width:600px;line-height:1.85;margin-bottom:52px;
-  animation:fadeUp .8s .45s ease both;
-}
-.badge-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:56px;animation:fadeUp .8s .6s ease both;}
-.badge{border:1px solid var(--line-strong);color:var(--muted);padding:10px 24px;font-size:.53rem;letter-spacing:3px;text-transform:uppercase;transition:all .35s;cursor:pointer;}
-.badge:hover{border-color:var(--accent-3);color:var(--accent-3);}
-.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;}
-.scroll-hint span{font-size:.48rem;letter-spacing:4px;text-transform:uppercase;color:var(--soft);white-space:nowrap;}
-.scroll-line{width:1px;height:48px;background:linear-gradient(180deg,var(--accent),transparent);animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-/* ─── SECTION DIVIDER ─── */
-.sec-break{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.22;}
-
-/* ─── SECTION WRAPPER ─── */
-.section{min-height:100vh;padding:140px 60px 100px;max-width:1100px;margin:0 auto;position:relative;}
-
-/* ─── SECTION BANNER ─── */
-.sec-banner{
-  text-align:center;padding:80px 60px;border:1px solid var(--line);
-  background:rgba(155,184,198,.022);margin-bottom:36px;position:relative;overflow:hidden;
-}
-.sec-banner::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-3),var(--accent),transparent);}
-.sec-banner-logo{height:44px;width:auto;opacity:.8;margin-bottom:22px;}
-.sec-banner-num{font-size:.56rem;text-transform:uppercase;letter-spacing:4px;color:var(--soft);margin-bottom:12px;}
-.sec-banner-title{font-family:'Bodoni Moda',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;text-transform:uppercase;line-height:1.15;margin-bottom:10px;}
-.sec-banner-title .i{color:var(--accent-3);font-style:italic;}
-.sec-banner-sub{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--muted);max-width:520px;margin:0 auto;}
-
-/* ─── PAGE CARDS ─── */
-.page-card{
-  background:var(--panel);border:1px solid var(--line);
-  padding:52px 60px;margin-bottom:28px;position:relative;overflow:hidden;
-  opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;
-}
-.page-card.visible{opacity:1;transform:translateY(0);}
-.page-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
-
-/* ─── HEADINGS ─── */
-.eyebrow{display:block;font-size:.56rem;letter-spacing:7px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px;}
-.page-title{font-family:'Bodoni Moda',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.05;letter-spacing:-1px;margin-bottom:14px;}
-.page-title .i{color:var(--accent-3);font-style:italic;}
-.page-sub{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--muted);line-height:1.85;margin-bottom:48px;padding-bottom:28px;border-bottom:1px solid var(--line);}
-h2{font-family:'Bodoni Moda',serif;font-size:.88rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent-3);margin:52px 0 18px;display:flex;align-items:center;gap:14px;}
-h2::before{content:"";display:block;width:28px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);flex-shrink:0;}
-h3{font-family:'Bodoni Moda',serif;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-3);margin:28px 0 10px;}
-p{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.85;color:var(--muted);margin-bottom:16px;}
-strong{color:var(--text);}
-
-/* ─── TOC ─── */
-.toc-wrap{display:flex;flex-direction:column;gap:0;}
-.toc-section-head{
-  font-family:'Montserrat',sans-serif;font-size:.52rem;text-transform:uppercase;
-  letter-spacing:4px;color:var(--accent);margin:24px 0 6px;padding-left:2px;
-}
-.toc-section-head:first-child{margin-top:0;}
-.toc-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.035);}
-.toc-item a{color:var(--accent-3);text-decoration:none;transition:color .2s;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.3px;}
-.toc-item a:hover{color:#fff;}
-.toc-item .pg{color:var(--soft);font-size:.68rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;flex-shrink:0;margin-left:16px;}
-
-/* ─── CHECKLIST ─── */
-.checklist{list-style:none;margin-bottom:18px;}
-.checklist li{
-  font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--muted);
-  padding:10px 0 10px 26px;border-bottom:1px solid rgba(255,255,255,.038);
-  line-height:1.72;position:relative;
-}
-.checklist li::before{content:"✦";position:absolute;left:0;top:12px;font-size:.42rem;color:var(--accent);}
-
-/* ─── CARDS GRID ─── */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-bottom:28px;}
-.card{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--accent);padding:26px;transition:border-color .3s,background .3s;}
-.card:hover{border-left-color:var(--accent-3);background:#0d0d0d;}
-.card-title{font-family:'Bodoni Moda',serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-3);margin-bottom:12px;}
-
-/* ─── HIGHLIGHT / CALLOUT ─── */
-.highlight{background:rgba(155,184,198,.04);border-left:2px solid var(--accent-3);padding:22px 26px;margin:24px 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.82;color:var(--text);}
-.callout{background:linear-gradient(135deg,#060606,#0b0b0b);border:1px solid var(--line);border-left:2px solid var(--accent-3);padding:28px 32px;margin:26px 0;position:relative;overflow:hidden;}
-.callout::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,var(--accent-3),transparent);opacity:.35;}
-.callout p{margin-bottom:0;color:#d5d5cf;}
-
-/* ─── STAT GRID ─── */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:2px;margin-bottom:40px;}
-.stat-box{background:var(--panel);border:1px solid var(--line);padding:28px 18px;text-align:center;transition:border-color .3s,background .3s;}
-.stat-box:hover{border-color:var(--accent);background:#0d0d0d;}
-.stat-num{display:block;font-family:'Bodoni Moda',serif;font-size:2.1rem;font-weight:700;color:var(--accent-3);margin-bottom:8px;}
-.stat-label{display:block;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--soft);}
-
-/* ─── PULL QUOTE ─── */
-.pull-quote{background:rgba(155,184,198,.03);border-left:2px solid var(--accent-3);padding:22px 28px;margin:28px 0;}
-.pull-quote p{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-style:italic;color:var(--text);margin-bottom:0;line-height:1.72;}
-
-/* ─── NUMBERED STEPS ─── */
-.steps{display:flex;flex-direction:column;gap:0;margin:28px 0;}
-.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.04);}
-.step:last-child{border-bottom:none;}
-.step-num{font-family:'Bodoni Moda',serif;font-size:1.7rem;font-weight:700;color:rgba(155,184,198,.2);flex-shrink:0;width:40px;line-height:1;}
-.step-content h4{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:4px;}
-.step-content p{margin-bottom:0;font-size:1rem;}
-
-/* ─── FLOW CHART ─── */
-.flow{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:20px 0 28px;font-family:'Montserrat',sans-serif;font-size:.6rem;}
-.flow-node{background:var(--panel-2);border:1px solid var(--line);padding:10px 16px;white-space:nowrap;color:var(--text);}
-.flow-node.accent{border-color:var(--accent-3);color:var(--accent-3);}
-.flow-arrow{color:var(--soft);padding:0 10px;font-size:.9rem;}
-
-/* ─── DASHBOARD MINI BOXES ─── */
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:24px 0;}
-.dash-box{background:var(--panel-2);border:1px solid var(--line);padding:18px 22px;}
-.dash-label{font-size:.52rem;text-transform:uppercase;letter-spacing:3px;color:var(--soft);margin-bottom:6px;font-family:'Montserrat',sans-serif;}
-.dash-val{font-family:'Bodoni Moda',serif;font-size:1.4rem;font-weight:700;color:var(--accent-3);}
-
-/* ─── PAGE FOOTER ─── */
-.page-footer{
-  margin-top:36px;padding-top:16px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:.65rem;color:var(--soft);font-family:'Montserrat',sans-serif;letter-spacing:1px;flex-wrap:wrap;gap:8px;
-}
-.pg-badge{background:var(--accent-3);color:#000;padding:2px 10px;font-weight:700;font-size:.68rem;letter-spacing:1px;}
-
-/* ─── INTRO COVER ─── */
-.intro-cover{text-align:center;padding:80px 56px 48px;display:flex;flex-direction:column;align-items:center;}
-.cover-eye{display:block;font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:6px;text-transform:uppercase;color:var(--soft);margin-bottom:28px;}
-.cover-title{font-family:'Bodoni Moda',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:900;text-transform:uppercase;letter-spacing:-1px;line-height:1;color:var(--text);margin-bottom:28px;}
-.cover-title .i{color:var(--accent-3);font-style:italic;}
-.cover-desc{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.88;color:var(--muted);max-width:540px;margin:0 0 36px;}
-
-/* ─── COPYRIGHT ─── */
-.copyright{text-align:center;font-family:'Montserrat',sans-serif;font-size:.65rem;color:var(--soft);margin-top:28px;line-height:1.9;}
-
-/* ─── SECTION TABS BAR ─── */
-.tabs-bar{
-  position:sticky;top:61px;z-index:900;
-  background:rgba(0,0,0,.94);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-}
-.tabs-inner{max-width:1100px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 22px;}
-.tabs-inner::-webkit-scrollbar{display:none;}
-.sec-tab{
-  font-size:.52rem;text-transform:uppercase;letter-spacing:2px;padding:16px 18px;
-  border-bottom:2px solid transparent;color:var(--soft);background:transparent;
-  cursor:pointer;white-space:nowrap;transition:all .3s;text-decoration:none;
-  border-top:none;border-left:none;border-right:none;font-family:'Montserrat',sans-serif;
-}
-.sec-tab.active{color:var(--accent-3);border-bottom-color:var(--accent-3);}
-.sec-tab:hover{color:var(--text);}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  .nav{padding:14px 22px;}
-  .nav.scrolled{padding:11px 22px;}
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .tabs-bar{display:none;}
-  .section{padding:90px 20px 70px;}
-  .page-card{padding:30px 20px;}
-  .sec-banner{padding:52px 24px;}
-  .intro-cover{padding:48px 20px 32px;}
-  .toc-float{display:none;}
-}
-@media(max-width:480px){
-  .nav-logo{font-size:.95rem;letter-spacing:2px;}
-  .hero{padding:100px 24px 80px;}
-  .hero-title{font-size:clamp(2.4rem,14vw,3.6rem);letter-spacing:6px;}
-  .flow{flex-direction:column;align-items:flex-start;}
-  .dash-grid{grid-template-columns:1fr;}
-
-@media(max-width: 768px) {
-  .cover-card { padding: 48px 18px 32px; }
-  .cover-title { font-size: clamp(2rem, 8vw, 3rem); }
-    }
 @media(max-width:600px) {
-  .page-footer {flex-direction: column;align-items: flex-end; }
-   }
+  .page-footer { flex-direction: column; align-items: flex-end; }
+  .nav { padding: 12px 16px; }
+  .nav-logo { font-size: .9rem; letter-spacing: 2px; }
+  .footer { padding: 36px 20px 24px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media(max-width:480px) {
+  .hero-title { font-size: clamp(2.6rem, 13vw, 3.8rem); letter-spacing: 6px; }
+  .nav { padding: 10px 14px; }
+  .nav-logo { font-size: .82rem; letter-spacing: 1px; }
 }
 </style>
 </head>
 <body>
 
-<div id="prog"></div>
+<div class="progress-bar" id="progressBar"></div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a onclick="goTo('sec-intro')">Introduction</a>
-  <a onclick="goTo('sec-dynasty')">Dynasty vs Empire</a>
-  <a onclick="goTo('sec-toc')">Table of Contents</a>
-  <a onclick="goTo('sec-p1')">You Post Every Day</a>
-  <a onclick="goTo('sec-p2')">What This Guide Is</a>
-  <a onclick="goTo('sec-p3')">System Map</a>
-  <a onclick="goTo('sec-p4')">Reading Order</a>
-  <a onclick="goTo('sec-p5')">Command Center</a>
+  <a onclick="goTo('sec-intro')">Table of Contents</a>
+  <a href="#" style="margin-top:24px;border:1px solid var(--line-strong);color:var(--muted);width:auto;padding:12px 32px;">EMPIRE 2026</a>
 </div>
 
 <!-- NAV -->
 <nav class="nav" id="mainNav">
-  <a href="#" class="nav-logo">MY<span>ONLY</span>PROFIT</a>
+  <a href="https://myonlyprofit.com/" class="nav-logo">MY<span>ONLY</span>PROFIT</a>
   <div class="nav-links">
-    <a onclick="goTo('sec-intro')">Introduction</a>
-    <a onclick="goTo('sec-dynasty')">Overview</a>
-    <a onclick="goTo('sec-toc')">Contents</a>
-    <a onclick="goTo('sec-p1')">Strategy</a>
-    <a onclick="goTo('sec-p5')">Dashboard</a>
+    <a onclick="goTo('sec-intro')">Table of Contents</a>
     <a href="#" class="nav-cta">EMPIRE 2026</a>
   </div>
-  <button class="hamburger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- FLOATING TOC DOTS -->
 <div class="toc-float" id="tocFloat">
-  <div class="toc-dot active" onclick="goTo('sec-intro')"><span class="tip">Introduction</span></div>
-  <div class="toc-dot" onclick="goTo('sec-dynasty')"><span class="tip">Dynasty vs Empire</span></div>
-  <div class="toc-dot" onclick="goTo('sec-toc')"><span class="tip">Table of Contents</span></div>
-  <div class="toc-dot" onclick="goTo('sec-p1')"><span class="tip">You Post Every Day</span></div>
-  <div class="toc-dot" onclick="goTo('sec-p2')"><span class="tip">What This Guide Is</span></div>
-  <div class="toc-dot" onclick="goTo('sec-p3')"><span class="tip">System Map</span></div>
-  <div class="toc-dot" onclick="goTo('sec-p4')"><span class="tip">Reading Order</span></div>
-  <div class="toc-dot" onclick="goTo('sec-p5')"><span class="tip">Command Center</span></div>
+  <div class="toc-dot active" onclick="goTo('sec-hero')"><span class="toc-tip">Cover</span></div>
+  <div class="toc-dot" onclick="goTo('sec-intro')"><span class="toc-tip">Table of Contents</span></div>
 </div>
 
-<!-- ═══════════ HERO ═══════════ -->
-<div class="hero" id="hero">
+<!-- HERO -->
+<div class="empire-hero" id="sec-hero">
   <div class="hero-corner tl"></div>
   <div class="hero-corner tr"></div>
   <div class="hero-corner bl"></div>
   <div class="hero-corner br"></div>
-  <span class="hero-crown">♛</span>
-  <span class="hero-eye">MyOnlyProfit · Complete Strategy System · 2026</span>
-  <div class="hero-title">EMPIRE<span class="i"> ✦</span></div>
-  <span class="hero-subtitle">The Full Playbook — Six Systems. One Income Machine.</span>
+  <div class="hero-crown">♛</div>
+  <span class="hero-eyebrow">MyOnlyProfit · Complete Strategy System · 2026</span>
+  <div class="hero-title">EMPIRE<span> ✦</span></div>
+  <span class="hero-sub-label">The Full Playbook — Six Systems. One Income Machine.</span>
   <p class="hero-tagline">This is not a summary of popular advice. This is the complete, detailed operating system used by creators earning consistently — broken down section by section, strategy by strategy, page by page.</p>
   <div class="badge-row">
     <div class="badge">30-Day Content Strategy</div>
@@ -355,233 +208,235 @@ strong{color:var(--text);}
   </div>
   <div class="scroll-hint">
     <span>Scroll to begin</span>
-    <div class="scroll-line"></div>
+    <div class="scroll-arrow"></div>
   </div>
 </div>
 
-<div class="sec-break"></div>
+<div class="section-break"></div>
 
+<!-- TABLE OF CONTENTS -->
+<section class="book-section" id="sec-intro">
 
-
-<!-- ═══════════ INTRODUCTION SECTION ═══════════ -->
-<section class="section" id="sec-intro" style="padding-top:80px;">
-
-  <!-- DYNASTY VS EMPIRE -->
-  <div class="page-card" id="sec-dynasty">
-    <span class="eyebrow">Introduction · Overview</span>
-    <h2>What Separates Dynasty from Empire</h2>
-    <p>Dynasty gives you a fast, clear start: the core mechanics, the launch blueprint, the foundational scripts. It is the entry point — structured, practical, and complete for what it is.</p>
-    <p>Empire is different. It is built for creators who want to go further — not just execute tactics, but understand the system behind them. Empire covers the same core topics, but at a depth that Dynasty does not reach. The difference is comprehension. Dynasty tells you what to do. Empire tells you why it works, how it connects, and how to adapt it when circumstances change.</p>
-    <p>Empire includes sections on psychology, positioning, and the internal logic of monetization — parts that Dynasty does not contain. The creator who internalizes this guide does not follow a script. They understand a system. That distinction is where the real earning gap exists.</p>
-    <div class="highlight">
-      <strong>Note on the Predictable Income Strategy:</strong> This is the most text-heavy section in the guide. It covers the full creator growth system in granular detail — from positioning and branding psychology to content, monetization architecture, scaling, and every operational layer in between. It is dense by design — because precision is what makes it work. You are encouraged to internalize it as fully as possible.
-    </div>
-    <div class="page-footer"><span>2026 © MYONLYPROFIT. ALL RIGHTS RESERVED.</span><span class="pg-badge">Intro · Overview</span></div>
+  <div class="section-banner">
+    <img src="https://project-ke2z2.vercel.app/images/logo.png" alt="MYONLYPROFIT" style="height:48px;width:auto;opacity:.85;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;" onerror="this.style.display='none'"/>
+    <div class="sec-num">Introduction</div>
+    <div class="sec-title">EMPIRE<br/><span class="i">COMPLETE STRATEGY GUIDE</span></div>
+    <div class="sec-sub">Six complete systems for creators who want to understand, execute, and scale — not just survive. Every section is self-contained. Together, they form one machine.</div>
   </div>
 
-  <!-- MASTER TABLE OF CONTENTS -->
-  <div class="page-card" id="sec-toc">
-    <span class="eyebrow">Introduction · Table of Contents</span>
-    <h2>Complete Table of Contents</h2>
-    <div class="toc-wrap">
+  <div class="page-card" id="toc-main">
+    <h2><span class="num">—</span> Complete Table of Contents</h2>
+    <div class="toc-list">
 
       <div class="toc-section-head">INTRODUCTION</div>
-      <div class="toc-item"><a href="#sec-intro">Cover</a><span class="pg">Intro · Cover</span></div>
-      <div class="toc-item"><a href="#sec-dynasty">Dynasty vs Empire</a><span class="pg">Intro · Overview</span></div>
-      <div class="toc-item"><a href="#sec-toc">Table of Contents</a><span class="pg">Intro · TOC</span></div>
-      <div class="toc-item"><a href="#sec-p1">You Post Every Day</a><span class="pg">Intro · 1</span></div>
-      <div class="toc-item"><a href="#sec-p2">What This Guide Is &amp; Is Not</a><span class="pg">Intro · 2</span></div>
-      <div class="toc-item"><a href="#sec-p3">System Map — How Everything Connects</a><span class="pg">Intro · 3</span></div>
-      <div class="toc-item"><a href="#sec-p4">Reading Order</a><span class="pg">Intro · 4</span></div>
-      <div class="toc-item"><a href="#sec-p5">Your Command Center</a><span class="pg">Intro · 5</span></div>
+      <div class="toc-item"><a href="#sec-intro">Cover &amp; Table of Contents</a><span>Intro · TOC</span></div>
 
       <div class="toc-section-head">SECTION 01 — 30-DAY CONTENT STRATEGY</div>
-      <div class="toc-item"><a href="#">Gantt Chart: 30-Day Roadmap</a><span class="pg">Content · 3</span></div>
-      <div class="toc-item"><a href="#">Executive Summary</a><span class="pg">Content · 4</span></div>
-      <div class="toc-item"><a href="#">Notes &amp; Assumptions</a><span class="pg">Content · 5</span></div>
-      <div class="toc-item"><a href="#">Key Metrics (KPI)</a><span class="pg">Content · 6</span></div>
-      <div class="toc-item"><a href="#">Traffic &amp; Revenue Plan</a><span class="pg">Content · 7</span></div>
-      <div class="toc-item"><a href="#">Message Templates</a><span class="pg">Content · 8</span></div>
-      <div class="toc-item"><a href="#">Variety &amp; Theming</a><span class="pg">Content · 9</span></div>
-      <div class="toc-item"><a href="#">Week 1–2 Cycle Overview</a><span class="pg">Content · 10</span></div>
-      <div class="toc-item"><a href="#">Week 3–4 Cycle Overview</a><span class="pg">Content · 11</span></div>
-      <div class="toc-item"><a href="#">Day 1–2</a><span class="pg">Content · 12</span></div>
-      <div class="toc-item"><a href="#">Day 3–4</a><span class="pg">Content · 13</span></div>
-      <div class="toc-item"><a href="#">Day 5–6</a><span class="pg">Content · 14</span></div>
-      <div class="toc-item"><a href="#">Day 7</a><span class="pg">Content · 15</span></div>
-      <div class="toc-item"><a href="#">Day 8–9</a><span class="pg">Content · 16</span></div>
-      <div class="toc-item"><a href="#">Day 10–11</a><span class="pg">Content · 17</span></div>
-      <div class="toc-item"><a href="#">Day 12–13</a><span class="pg">Content · 18</span></div>
-      <div class="toc-item"><a href="#">Day 14</a><span class="pg">Content · 19</span></div>
-      <div class="toc-item"><a href="#">Day 15–16</a><span class="pg">Content · 20</span></div>
-      <div class="toc-item"><a href="#">Day 17–18</a><span class="pg">Content · 21</span></div>
-      <div class="toc-item"><a href="#">Day 19–20</a><span class="pg">Content · 22</span></div>
-      <div class="toc-item"><a href="#">Day 21</a><span class="pg">Content · 23</span></div>
-      <div class="toc-item"><a href="#">Day 22–23</a><span class="pg">Content · 24</span></div>
-      <div class="toc-item"><a href="#">Day 24–25</a><span class="pg">Content · 25</span></div>
-      <div class="toc-item"><a href="#">Day 26–27</a><span class="pg">Content · 26</span></div>
-      <div class="toc-item"><a href="#">Day 28–30</a><span class="pg">Content · 27</span></div>
+      <div class="toc-item"><a href="#">Gantt Chart: 30-Day Roadmap</a><span>Content · 3</span></div>
+      <div class="toc-item"><a href="#">Executive Summary</a><span>Content · 4</span></div>
+      <div class="toc-item"><a href="#">Notes &amp; Assumptions</a><span>Content · 5</span></div>
+      <div class="toc-item"><a href="#">Key Metrics (KPI)</a><span>Content · 6</span></div>
+      <div class="toc-item"><a href="#">Traffic &amp; Revenue Plan</a><span>Content · 7</span></div>
+      <div class="toc-item"><a href="#">Message Templates</a><span>Content · 8</span></div>
+      <div class="toc-item"><a href="#">Variety &amp; Theming</a><span>Content · 9</span></div>
+      <div class="toc-item"><a href="#">Week 1–2 Cycle Overview</a><span>Content · 10</span></div>
+      <div class="toc-item"><a href="#">Week 3–4 Cycle Overview</a><span>Content · 11</span></div>
+      <div class="toc-item"><a href="#">Day 1–2</a><span>Content · 12</span></div>
+      <div class="toc-item"><a href="#">Day 3–4</a><span>Content · 13</span></div>
+      <div class="toc-item"><a href="#">Day 5–6</a><span>Content · 14</span></div>
+      <div class="toc-item"><a href="#">Day 7</a><span>Content · 15</span></div>
+      <div class="toc-item"><a href="#">Day 8–9</a><span>Content · 16</span></div>
+      <div class="toc-item"><a href="#">Day 10–11</a><span>Content · 17</span></div>
+      <div class="toc-item"><a href="#">Day 12–13</a><span>Content · 18</span></div>
+      <div class="toc-item"><a href="#">Day 14</a><span>Content · 19</span></div>
+      <div class="toc-item"><a href="#">Day 15–16</a><span>Content · 20</span></div>
+      <div class="toc-item"><a href="#">Day 17–18</a><span>Content · 21</span></div>
+      <div class="toc-item"><a href="#">Day 19–20</a><span>Content · 22</span></div>
+      <div class="toc-item"><a href="#">Day 21</a><span>Content · 23</span></div>
+      <div class="toc-item"><a href="#">Day 22–23</a><span>Content · 24</span></div>
+      <div class="toc-item"><a href="#">Day 24–25</a><span>Content · 25</span></div>
+      <div class="toc-item"><a href="#">Day 26–27</a><span>Content · 26</span></div>
+      <div class="toc-item"><a href="#">Day 28–30</a><span>Content · 27</span></div>
 
       <div class="toc-section-head">SECTION 02 — TIKTOK TRAFFIC BLUEPRINT</div>
-      <div class="toc-item"><a href="#">How TikTok Decides Who Sees You</a><span class="pg">TikTok · 3</span></div>
-      <div class="toc-item"><a href="#">The Virality Formula</a><span class="pg">TikTok · 4</span></div>
-      <div class="toc-item"><a href="#">Content Rules &amp; Platform Safety</a><span class="pg">TikTok · 5</span></div>
-      <div class="toc-item"><a href="#">High-Performing Formats</a><span class="pg">TikTok · 6</span></div>
-      <div class="toc-item"><a href="#">Hook Engineering</a><span class="pg">TikTok · 7</span></div>
-      <div class="toc-item"><a href="#">Caption &amp; CTA Strategy</a><span class="pg">TikTok · 8</span></div>
-      <div class="toc-item"><a href="#">Hashtag &amp; Sound Strategy</a><span class="pg">TikTok · 9</span></div>
-      <div class="toc-item"><a href="#">TikTok → OnlyFans Funnel Architecture</a><span class="pg">TikTok · 10</span></div>
-      <div class="toc-item"><a href="#">DM Keyword Funnels</a><span class="pg">TikTok · 11</span></div>
-      <div class="toc-item"><a href="#">6-Week Growth Roadmap</a><span class="pg">TikTok · 12</span></div>
-      <div class="toc-item"><a href="#">Instagram as a Branding Engine</a><span class="pg">TikTok · 13</span></div>
-      <div class="toc-item"><a href="#">Reddit Strategy</a><span class="pg">TikTok · 14</span></div>
-      <div class="toc-item"><a href="#">Twitter/X Strategy</a><span class="pg">TikTok · 15</span></div>
-      <div class="toc-item"><a href="#">Multi-Platform Architecture</a><span class="pg">TikTok · 16</span></div>
-      <div class="toc-item"><a href="#">Scaling Beyond Virality</a><span class="pg">TikTok · 17</span></div>
+      <div class="toc-item"><a href="#">How TikTok Decides Who Sees You</a><span>TikTok · 3</span></div>
+      <div class="toc-item"><a href="#">The Virality Formula</a><span>TikTok · 4</span></div>
+      <div class="toc-item"><a href="#">Content Rules &amp; Platform Safety</a><span>TikTok · 5</span></div>
+      <div class="toc-item"><a href="#">High-Performing Formats</a><span>TikTok · 6</span></div>
+      <div class="toc-item"><a href="#">Hook Engineering</a><span>TikTok · 7</span></div>
+      <div class="toc-item"><a href="#">Caption &amp; CTA Strategy</a><span>TikTok · 8</span></div>
+      <div class="toc-item"><a href="#">Hashtag &amp; Sound Strategy</a><span>TikTok · 9</span></div>
+      <div class="toc-item"><a href="#">TikTok → OnlyFans Funnel Architecture</a><span>TikTok · 10</span></div>
+      <div class="toc-item"><a href="#">DM Keyword Funnels</a><span>TikTok · 11</span></div>
+      <div class="toc-item"><a href="#">6-Week Growth Roadmap</a><span>TikTok · 12</span></div>
+      <div class="toc-item"><a href="#">Instagram as a Branding Engine</a><span>TikTok · 13</span></div>
+      <div class="toc-item"><a href="#">Reddit Strategy</a><span>TikTok · 14</span></div>
+      <div class="toc-item"><a href="#">Twitter/X Strategy</a><span>TikTok · 15</span></div>
+      <div class="toc-item"><a href="#">Multi-Platform Architecture</a><span>TikTok · 16</span></div>
+      <div class="toc-item"><a href="#">Scaling Beyond Virality</a><span>TikTok · 17</span></div>
 
       <div class="toc-section-head">SECTION 03 — BIO CONVERSION STRATEGY</div>
-      <div class="toc-item"><a href="#">Why Most Profiles Fail</a><span class="pg">Bio · 3</span></div>
-      <div class="toc-item"><a href="#">The Visitor Psychology</a><span class="pg">Bio · 4</span></div>
-      <div class="toc-item"><a href="#">Profile Image Strategy</a><span class="pg">Bio · 5</span></div>
-      <div class="toc-item"><a href="#">Banner Image Strategy</a><span class="pg">Bio · 6</span></div>
-      <div class="toc-item"><a href="#">Bio Text Formula</a><span class="pg">Bio · 7</span></div>
-      <div class="toc-item"><a href="#">Pricing Architecture</a><span class="pg">Bio · 8</span></div>
-      <div class="toc-item"><a href="#">Visible Content Strategy</a><span class="pg">Bio · 9</span></div>
-      <div class="toc-item"><a href="#">Profile Conversion Chart</a><span class="pg">Bio · 10</span></div>
-      <div class="toc-item"><a href="#">The Profile Audit Checklist</a><span class="pg">Bio · 11</span></div>
-      <div class="toc-item"><a href="#">Common Conversion Killers</a><span class="pg">Bio · 12</span></div>
-      <div class="toc-item"><a href="#">TikTok Bio Optimization</a><span class="pg">Bio · 13</span></div>
-      <div class="toc-item"><a href="#">Instagram Bio &amp; Highlights</a><span class="pg">Bio · 14</span></div>
-      <div class="toc-item"><a href="#">Reddit &amp; Twitter/X Bio</a><span class="pg">Bio · 15</span></div>
-      <div class="toc-item"><a href="#">Profiles That Convert — Full System Summary</a><span class="pg">Bio · 16</span></div>
+      <div class="toc-item"><a href="#">Why Most Profiles Fail</a><span>Bio · 3</span></div>
+      <div class="toc-item"><a href="#">The Visitor Psychology</a><span>Bio · 4</span></div>
+      <div class="toc-item"><a href="#">Profile Image Strategy</a><span>Bio · 5</span></div>
+      <div class="toc-item"><a href="#">Banner Image Strategy</a><span>Bio · 6</span></div>
+      <div class="toc-item"><a href="#">Bio Text Formula</a><span>Bio · 7</span></div>
+      <div class="toc-item"><a href="#">Pricing Architecture</a><span>Bio · 8</span></div>
+      <div class="toc-item"><a href="#">Visible Content Strategy</a><span>Bio · 9</span></div>
+      <div class="toc-item"><a href="#">Profile Conversion Chart</a><span>Bio · 10</span></div>
+      <div class="toc-item"><a href="#">The Profile Audit Checklist</a><span>Bio · 11</span></div>
+      <div class="toc-item"><a href="#">Common Conversion Killers</a><span>Bio · 12</span></div>
+      <div class="toc-item"><a href="#">TikTok Bio Optimization</a><span>Bio · 13</span></div>
+      <div class="toc-item"><a href="#">Instagram Bio &amp; Highlights</a><span>Bio · 14</span></div>
+      <div class="toc-item"><a href="#">Reddit &amp; Twitter/X Bio</a><span>Bio · 15</span></div>
+      <div class="toc-item"><a href="#">Profiles That Convert — Full System Summary</a><span>Bio · 16</span></div>
 
       <div class="toc-section-head">SECTION 04 — DM CONVERSION SCRIPTS</div>
-      <div class="toc-item"><a href="#">The DM Revenue System — Overview</a><span class="pg">DM · 3</span></div>
-      <div class="toc-item"><a href="#">Why DMs Are Your Profit Engine</a><span class="pg">DM · 4</span></div>
-      <div class="toc-item"><a href="#">The 5-Stage Conversion Flow</a><span class="pg">DM · 5</span></div>
-      <div class="toc-item"><a href="#">10 Psychological Triggers That Drive Sales</a><span class="pg">DM · 6</span></div>
-      <div class="toc-item"><a href="#">Emotion as Product</a><span class="pg">DM · 7</span></div>
-      <div class="toc-item"><a href="#">High-Performing Message Styles</a><span class="pg">DM · 8</span></div>
-      <div class="toc-item"><a href="#">Proven DM Flow — From Hook to Purchase</a><span class="pg">DM · 9</span></div>
-      <div class="toc-item"><a href="#">Real Scripts That Work (Tested)</a><span class="pg">DM · 10</span></div>
-      <div class="toc-item"><a href="#">Welcome DM System</a><span class="pg">DM · 11</span></div>
-      <div class="toc-item"><a href="#">PPV Pricing Architecture</a><span class="pg">DM · 12</span></div>
-      <div class="toc-item"><a href="#">Upsell Sequences</a><span class="pg">DM · 13</span></div>
-      <div class="toc-item"><a href="#">Advanced Tactics</a><span class="pg">DM · 14</span></div>
-      <div class="toc-item"><a href="#">Scaling DMs Without Burnout</a><span class="pg">DM · 15</span></div>
-      <div class="toc-item"><a href="#">DM Revenue Chart</a><span class="pg">DM · 16</span></div>
-      <div class="toc-item"><a href="#">The Complete DM System Summary</a><span class="pg">DM · 17</span></div>
+      <div class="toc-item"><a href="#">The DM Revenue System — Overview</a><span>DM · 3</span></div>
+      <div class="toc-item"><a href="#">Why DMs Are Your Profit Engine</a><span>DM · 4</span></div>
+      <div class="toc-item"><a href="#">The 5-Stage Conversion Flow</a><span>DM · 5</span></div>
+      <div class="toc-item"><a href="#">10 Psychological Triggers That Drive Sales</a><span>DM · 6</span></div>
+      <div class="toc-item"><a href="#">Emotion as Product</a><span>DM · 7</span></div>
+      <div class="toc-item"><a href="#">High-Performing Message Styles</a><span>DM · 8</span></div>
+      <div class="toc-item"><a href="#">Proven DM Flow — From Hook to Purchase</a><span>DM · 9</span></div>
+      <div class="toc-item"><a href="#">Real Scripts That Work (Tested)</a><span>DM · 10</span></div>
+      <div class="toc-item"><a href="#">Welcome DM System</a><span>DM · 11</span></div>
+      <div class="toc-item"><a href="#">PPV Pricing Architecture</a><span>DM · 12</span></div>
+      <div class="toc-item"><a href="#">Upsell Sequences</a><span>DM · 13</span></div>
+      <div class="toc-item"><a href="#">Advanced Tactics</a><span>DM · 14</span></div>
+      <div class="toc-item"><a href="#">Scaling DMs Without Burnout</a><span>DM · 15</span></div>
+      <div class="toc-item"><a href="#">DM Revenue Chart</a><span>DM · 16</span></div>
+      <div class="toc-item"><a href="#">The Complete DM System Summary</a><span>DM · 17</span></div>
 
       <div class="toc-section-head">SECTION 05 — PREDICTABLE INCOME STRATEGY</div>
-      <div class="toc-item"><a href="#">Note From the Author</a><span class="pg">Income · 3</span></div>
-      <div class="toc-item"><a href="#">The System Behind OnlyFans Success</a><span class="pg">Income · 4</span></div>
-      <div class="toc-item"><a href="#">Stop Trying to Please Everyone</a><span class="pg">Income · 5</span></div>
-      <div class="toc-item"><a href="#">Weak Branding</a><span class="pg">Income · 6</span></div>
-      <div class="toc-item"><a href="#">Profiles That Convert</a><span class="pg">Income · 7</span></div>
-      <div class="toc-item"><a href="#">Attraction, Conversion, Monetization</a><span class="pg">Income · 8</span></div>
-      <div class="toc-item"><a href="#">Subscription + PPV: The Revenue Model That Works</a><span class="pg">Income · 9</span></div>
-      <div class="toc-item"><a href="#">Systemize, Measure, Refine</a><span class="pg">Income · 10</span></div>
-      <div class="toc-item"><a href="#">Efficiency &gt; Complexity: Become Professional</a><span class="pg">Income · 11</span></div>
-      <div class="toc-item"><a href="#">The First 7 Days: Launching Your System</a><span class="pg">Income · 12</span></div>
-      <div class="toc-item"><a href="#">Likes Don't Pay Bills: Post to Convert</a><span class="pg">Income · 13</span></div>
-      <div class="toc-item"><a href="#">Focus on What Works: The 80/20 Rule</a><span class="pg">Income · 14</span></div>
-      <div class="toc-item"><a href="#">Creating a Content Bank: The Power of Batching</a><span class="pg">Income · 15</span></div>
-      <div class="toc-item"><a href="#">Attention, Tease, Engage: A Repeatable Growth Loop</a><span class="pg">Income · 16</span></div>
-      <div class="toc-item"><a href="#">Captions as Revenue Engines</a><span class="pg">Income · 17</span></div>
-      <div class="toc-item"><a href="#">Simple Formats, Compounded Results</a><span class="pg">Income · 18</span></div>
-      <div class="toc-item"><a href="#">Series-Based Strategy</a><span class="pg">Income · 19</span></div>
-      <div class="toc-item"><a href="#">Stability vs. Spikes: Retention Drives Predictable Income</a><span class="pg">Income · 20</span></div>
-      <div class="toc-item"><a href="#">Scaling Through Sustainability</a><span class="pg">Income · 21</span></div>
-      <div class="toc-item"><a href="#">Maximizing ROI on Every Piece of Content</a><span class="pg">Income · 22</span></div>
-      <div class="toc-item"><a href="#">The Traffic Multiplier</a><span class="pg">Income · 23</span></div>
-      <div class="toc-item"><a href="#">Distribution Without Followers</a><span class="pg">Income · 24</span></div>
-      <div class="toc-item"><a href="#">Instagram as a Branding Engine</a><span class="pg">Income · 25</span></div>
-      <div class="toc-item"><a href="#">Targeted Communities: Reddit Strategy</a><span class="pg">Income · 26</span></div>
-      <div class="toc-item"><a href="#">From Visibility to Monetization: Twitter/X Strategy</a><span class="pg">Income · 27</span></div>
-      <div class="toc-item"><a href="#">Virality Isn't Luck: It's a Formula</a><span class="pg">Income · 28</span></div>
-      <div class="toc-item"><a href="#">The Economics of a Hook</a><span class="pg">Income · 29</span></div>
-      <div class="toc-item"><a href="#">Content Formats That Convert</a><span class="pg">Income · 30</span></div>
-      <div class="toc-item"><a href="#">Content Planning</a><span class="pg">Income · 31</span></div>
-      <div class="toc-item"><a href="#">Audience Psychology</a><span class="pg">Income · 32</span></div>
-      <div class="toc-item"><a href="#">Creating Desire Through Tension</a><span class="pg">Income · 33</span></div>
-      <div class="toc-item"><a href="#">Reactivation Strategy</a><span class="pg">Income · 34</span></div>
-      <div class="toc-item"><a href="#">Lifetime Value</a><span class="pg">Income · 35</span></div>
-      <div class="toc-item"><a href="#">Subscription + PPV Architecture</a><span class="pg">Income · 36</span></div>
-      <div class="toc-item"><a href="#">Connection to Conversion: The DM Revenue System</a><span class="pg">Income · 37</span></div>
-      <div class="toc-item"><a href="#">Operations &amp; Workflow</a><span class="pg">Income · 38</span></div>
-      <div class="toc-item"><a href="#">Scaling from Individual to System</a><span class="pg">Income · 39</span></div>
-      <div class="toc-item"><a href="#">Weekly Operating Rhythm</a><span class="pg">Income · 40</span></div>
-      <div class="toc-item"><a href="#">Content Repurposing Framework</a><span class="pg">Income · 41</span></div>
-      <div class="toc-item"><a href="#">Revenue Review</a><span class="pg">Income · 42</span></div>
-      <div class="toc-item"><a href="#">Audience Segmentation</a><span class="pg">Income · 43</span></div>
-      <div class="toc-item"><a href="#">Fan Psychology &amp; Retention</a><span class="pg">Income · 44</span></div>
-      <div class="toc-item"><a href="#">Content Hierarchy</a><span class="pg">Income · 45</span></div>
-      <div class="toc-item"><a href="#">Pricing Perception</a><span class="pg">Income · 46</span></div>
-      <div class="toc-item"><a href="#">Growth Compounding</a><span class="pg">Income · 47</span></div>
-      <div class="toc-item"><a href="#">Systems vs Tactics</a><span class="pg">Income · 48</span></div>
-      <div class="toc-item"><a href="#">Building a Team</a><span class="pg">Income · 49</span></div>
-      <div class="toc-item"><a href="#">Risk Management</a><span class="pg">Income · 50</span></div>
-      <div class="toc-item"><a href="#">Multi-Platform Strategy</a><span class="pg">Income · 51</span></div>
-      <div class="toc-item"><a href="#">Brand Partnerships</a><span class="pg">Income · 52</span></div>
-      <div class="toc-item"><a href="#">Mindset &amp; Longevity</a><span class="pg">Income · 53</span></div>
-      <div class="toc-item"><a href="#">The Complete Blueprint</a><span class="pg">Income · 54</span></div>
-      <div class="toc-item"><a href="#">Full System Summary</a><span class="pg">Income · 55</span></div>
+      <div class="toc-item"><a href="#">Note From the Author</a><span>Income · 3</span></div>
+      <div class="toc-item"><a href="#">The System Behind OnlyFans Success</a><span>Income · 4</span></div>
+      <div class="toc-item"><a href="#">Stop Trying to Please Everyone</a><span>Income · 5</span></div>
+      <div class="toc-item"><a href="#">Weak Branding</a><span>Income · 6</span></div>
+      <div class="toc-item"><a href="#">Profiles That Convert</a><span>Income · 7</span></div>
+      <div class="toc-item"><a href="#">Attraction, Conversion, Monetization</a><span>Income · 8</span></div>
+      <div class="toc-item"><a href="#">Subscription + PPV: The Revenue Model That Works</a><span>Income · 9</span></div>
+      <div class="toc-item"><a href="#">Systemize, Measure, Refine</a><span>Income · 10</span></div>
+      <div class="toc-item"><a href="#">Efficiency &gt; Complexity: Become Professional</a><span>Income · 11</span></div>
+      <div class="toc-item"><a href="#">The First 7 Days: Launching Your System</a><span>Income · 12</span></div>
+      <div class="toc-item"><a href="#">Likes Don't Pay Bills: Post to Convert</a><span>Income · 13</span></div>
+      <div class="toc-item"><a href="#">Focus on What Works: The 80/20 Rule</a><span>Income · 14</span></div>
+      <div class="toc-item"><a href="#">Creating a Content Bank: The Power of Batching</a><span>Income · 15</span></div>
+      <div class="toc-item"><a href="#">Attention, Tease, Engage: A Repeatable Growth Loop</a><span>Income · 16</span></div>
+      <div class="toc-item"><a href="#">Captions as Revenue Engines</a><span>Income · 17</span></div>
+      <div class="toc-item"><a href="#">Simple Formats, Compounded Results</a><span>Income · 18</span></div>
+      <div class="toc-item"><a href="#">Series-Based Strategy</a><span>Income · 19</span></div>
+      <div class="toc-item"><a href="#">Stability vs. Spikes: Retention Drives Predictable Income</a><span>Income · 20</span></div>
+      <div class="toc-item"><a href="#">Scaling Through Sustainability</a><span>Income · 21</span></div>
+      <div class="toc-item"><a href="#">Maximizing ROI on Every Piece of Content</a><span>Income · 22</span></div>
+      <div class="toc-item"><a href="#">The Traffic Multiplier</a><span>Income · 23</span></div>
+      <div class="toc-item"><a href="#">Distribution Without Followers</a><span>Income · 24</span></div>
+      <div class="toc-item"><a href="#">Instagram as a Branding Engine</a><span>Income · 25</span></div>
+      <div class="toc-item"><a href="#">Targeted Communities: Reddit Strategy</a><span>Income · 26</span></div>
+      <div class="toc-item"><a href="#">From Visibility to Monetization: Twitter/X Strategy</a><span>Income · 27</span></div>
+      <div class="toc-item"><a href="#">Virality Isn't Luck: It's a Formula</a><span>Income · 28</span></div>
+      <div class="toc-item"><a href="#">The Economics of a Hook</a><span>Income · 29</span></div>
+      <div class="toc-item"><a href="#">Content Formats That Convert</a><span>Income · 30</span></div>
+      <div class="toc-item"><a href="#">Content Planning</a><span>Income · 31</span></div>
+      <div class="toc-item"><a href="#">Audience Psychology</a><span>Income · 32</span></div>
+      <div class="toc-item"><a href="#">Creating Desire Through Tension</a><span>Income · 33</span></div>
+      <div class="toc-item"><a href="#">Reactivation Strategy</a><span>Income · 34</span></div>
+      <div class="toc-item"><a href="#">Lifetime Value</a><span>Income · 35</span></div>
+      <div class="toc-item"><a href="#">Subscription + PPV Architecture</a><span>Income · 36</span></div>
+      <div class="toc-item"><a href="#">Connection to Conversion: The DM Revenue System</a><span>Income · 37</span></div>
+      <div class="toc-item"><a href="#">Operations &amp; Workflow</a><span>Income · 38</span></div>
+      <div class="toc-item"><a href="#">Scaling from Individual to System</a><span>Income · 39</span></div>
+      <div class="toc-item"><a href="#">Weekly Operating Rhythm</a><span>Income · 40</span></div>
+      <div class="toc-item"><a href="#">Content Repurposing Framework</a><span>Income · 41</span></div>
+      <div class="toc-item"><a href="#">Revenue Review</a><span>Income · 42</span></div>
+      <div class="toc-item"><a href="#">Audience Segmentation</a><span>Income · 43</span></div>
+      <div class="toc-item"><a href="#">Fan Psychology &amp; Retention</a><span>Income · 44</span></div>
+      <div class="toc-item"><a href="#">Content Hierarchy</a><span>Income · 45</span></div>
+      <div class="toc-item"><a href="#">Pricing Perception</a><span>Income · 46</span></div>
+      <div class="toc-item"><a href="#">Growth Compounding</a><span>Income · 47</span></div>
+      <div class="toc-item"><a href="#">Systems vs Tactics</a><span>Income · 48</span></div>
+      <div class="toc-item"><a href="#">Building a Team</a><span>Income · 49</span></div>
+      <div class="toc-item"><a href="#">Risk Management</a><span>Income · 50</span></div>
+      <div class="toc-item"><a href="#">Multi-Platform Strategy</a><span>Income · 51</span></div>
+      <div class="toc-item"><a href="#">Brand Partnerships</a><span>Income · 52</span></div>
+      <div class="toc-item"><a href="#">Mindset &amp; Longevity</a><span>Income · 53</span></div>
+      <div class="toc-item"><a href="#">The Complete Blueprint</a><span>Income · 54</span></div>
+      <div class="toc-item"><a href="#">Full System Summary</a><span>Income · 55</span></div>
 
       <div class="toc-section-head">SECTION 06 — BRAND STYLE GUIDE</div>
-      <div class="toc-item"><a href="#">Brand Foundations</a><span class="pg">Brand · 1</span></div>
-      <div class="toc-item"><a href="#">Visual Identity</a><span class="pg">Brand · 2</span></div>
-      <div class="toc-item"><a href="#">Niche Positioning</a><span class="pg">Brand · 3</span></div>
-      <div class="toc-item"><a href="#">Voice &amp; Tone</a><span class="pg">Brand · 4</span></div>
-      <div class="toc-item"><a href="#">Brand Audit</a><span class="pg">Brand · 5</span></div>
-      <div class="toc-item"><a href="#">Evolution &amp; Scale</a><span class="pg">Brand · 6</span></div>
+      <div class="toc-item"><a href="#">Brand Foundations</a><span>Brand · 1</span></div>
+      <div class="toc-item"><a href="#">Visual Identity</a><span>Brand · 2</span></div>
+      <div class="toc-item"><a href="#">Niche Positioning</a><span>Brand · 3</span></div>
+      <div class="toc-item"><a href="#">Voice &amp; Tone</a><span>Brand · 4</span></div>
+      <div class="toc-item"><a href="#">Brand Audit</a><span>Brand · 5</span></div>
+      <div class="toc-item"><a href="#">Evolution &amp; Scale</a><span>Brand · 6</span></div>
     </div>
-    <div class="page-footer"><span>2026 © MYONLYPROFIT. ALL RIGHTS RESERVED.</span><span class="pg-badge">Intro · TOC</span></div>
+    <div class="page-footer"><span>2026 © MYONLYPROFIT. ALL RIGHTS RESERVED.</span><span class="page-num">Intro · TOC</span></div>
   </div>
 
 </section>
 
-<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="https://myonlyprofit.com/" class="footer-logo">MY<span>ONLY</span>PROFIT</a>
+    <div class="footer-links">
+      <a href="https://myonlyprofit.com/privacy.html">Privacy</a>
+      <a href="https://myonlyprofit.com/terms.html">Terms</a>
+      <a href="https://myonlyprofit.com/blog/">Blog</a>
+      <a href="https://myonlyprofit.com/#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
 <script>
-function toggleMenu() {
+function toggleMobile() {
   document.getElementById('mobileMenu').classList.toggle('open');
-  document.getElementById('burger').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
 }
 function goTo(id) {
   document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('burger').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
   const el = document.getElementById(id);
   if (!el) return;
   setTimeout(() => {
-    const y = el.getBoundingClientRect().top + window.scrollY - 130;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }, 60);
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+  }, 100);
 }
-
 const nav = document.getElementById('mainNav');
-const prog = document.getElementById('prog');
-const sections = ['sec-intro','sec-dynasty','sec-toc','sec-p1','sec-p2','sec-p3','sec-p4','sec-p5'];
-const dots = document.querySelectorAll('.toc-dot');
-const tabs = document.querySelectorAll('.sec-tab');
-
 window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-  prog.style.width = pct + '%';
   nav.classList.toggle('scrolled', window.scrollY > 60);
-
-  let active = '';
-  sections.forEach(id => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  const dots = document.querySelectorAll('.toc-dot');
+  let active = 'sec-hero';
+  ['sec-hero','sec-intro'].forEach(id => {
     const el = document.getElementById(id);
     if (el && el.getBoundingClientRect().top <= 180) active = id;
   });
-  dots.forEach((d, i) => d.classList.toggle('active', sections[i] === active));
-  tabs.forEach((t, i) => t.classList.toggle('active', sections[i] === active));
+  dots.forEach((d, i) => d.classList.toggle('active', ['sec-hero','sec-intro'][i] === active));
 }, { passive: true });
-
 const cards = document.querySelectorAll('.page-card');
-const io = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.06 });
-cards.forEach(c => io.observe(c));
+cards.forEach(c => observer.observe(c));
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'PrintScreen' || (e.ctrlKey && ['p','s','u','a','c'].includes(e.key.toLowerCase())) || (e.metaKey && ['p','s','u','a','c'].includes(e.key.toLowerCase()))) {
+    e.preventDefault(); e.stopPropagation();
+  }
+});
+
+const wmOverlay = document.createElement('div');
+wmOverlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.97);align-items:center;justify-content:center;flex-direction:column;pointer-events:none;';
+wmOverlay.innerHTML = '<div style="font-family:\'Bodoni Moda\',serif;font-size:1.4rem;letter-spacing:6px;color:rgba(255,255,255,0.12);text-transform:uppercase;text-align:center;line-height:2.2;user-select:none;">MYONLYPROFIT<br>EMPIRE · CONFIDENTIAL<br>FOR PURCHASED USE ONLY</div>';
+document.body.appendChild(wmOverlay);
+document.addEventListener('visibilitychange', () => { wmOverlay.style.display = document.hidden ? 'flex' : 'none'; });
+window.addEventListener('blur', () => { wmOverlay.style.display = 'flex'; });
+window.addEventListener('focus', () => { wmOverlay.style.display = 'none'; });
 </script>
 </body>
 </html>
