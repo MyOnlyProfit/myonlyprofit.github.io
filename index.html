@@ -480,7 +480,7 @@
   <div class="stats-bar" id="results">
     <div class="stats-grid">
       <div class="stat-item reveal" style="transition-delay:.1s;">
-        <div class="stat-number" id="statCreators">20<sup style="font-size:60%;vertical-align:super;font-family:inherit;">+</sup></div>
+        <div class="stat-number" id="statCreators">20<sup style="font-size:55%;vertical-align:super;font-family:'Montserrat',sans-serif;font-weight:700;">+</sup></div>
         <div class="stat-label">Creators Launched</div>
       </div>
       <div class="stat-item reveal" style="transition-delay:.2s;">
@@ -840,10 +840,11 @@
             function tick(now) {
               const p = Math.min((now - start) / duration, 1);
               const eased = 1 - Math.pow(1 - p, 3);
+            const supTag = '<sup style="font-size:55%;vertical-align:super;font-family:\'Montserrat\',sans-serif;font-weight:700;">+</sup>';
               const val = Math.floor(eased * 20);
-              creatorsEl.innerHTML = val + '<sup style="font-size:60%;vertical-align:super;font-family:inherit;">+</sup>';
+              creatorsEl.innerHTML = val + supTag;
               if (p < 1) requestAnimationFrame(tick);
-              else creatorsEl.innerHTML = '20<sup style="font-size:60%;vertical-align:super;font-family:inherit;">+</sup>';
+              else creatorsEl.innerHTML = '20' + supTag;
             }
             requestAnimationFrame(tick);
           }
