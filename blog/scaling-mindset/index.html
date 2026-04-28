@@ -94,7 +94,7 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { color: var(--accent-3); }
 
-    /* ── SCROLL PROGRESS ── */
+    /* ── SCROLL BAR ── */
     .scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); z-index: 2000; transition: width .08s linear; }
 
     /* ── NAV ── */
@@ -126,7 +126,7 @@
     /* ── POST LAYOUT ── */
     .post-layout { max-width: 1200px; margin: 0 auto; padding: 40px 52px 100px; display: grid; grid-template-columns: 1fr 300px; gap: 72px; }
 
-    /* ── HERO ── */
+    /* ── ARTICLE ── */
     .post-hero { padding-bottom: 36px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
     .post-eyebrow { font-size: .52rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); display: inline-block; border: 1px solid rgba(42,92,107,.25); padding: 5px 14px; margin-bottom: 20px; }
     .post-title { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; letter-spacing: -1px; color: var(--text); margin-bottom: 20px; }
@@ -134,304 +134,151 @@
     .post-meta-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
     .post-meta-sep { width: 1px; height: 12px; background: var(--line-strong); }
     .author-strip { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
-    .author-avatar { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-    .author-avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .author-avatar {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .author-name { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); font-weight: 600; }
-    .author-role { font-size: .58rem; color: var(--soft); margin-top: 2px; }
+    .author-role { font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--soft); margin-top: 2px; }
 
-    /* ── ARTICLE BODY ── */
-    .post-body { font-size: .9rem; color: var(--muted); line-height: 1.9; }
-    .post-body p { margin-bottom: 22px; }
-    .post-body strong { color: var(--text); font-weight: 600; }
-    .post-body em { font-style: italic; }
+    /* ── POST CONTENT (match your main template) ── */
+    .post-content { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--muted); }
+    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); position: relative; }
+    .post-content h2::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 2px; background: var(--accent); }
+    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 32px 0 12px; }
+    .post-content p { margin-bottom: 22px; line-height: 1.85; }
+    .post-content p strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
+    .post-content ul { list-style: none; margin: 0 0 22px; padding: 0; }
+    .post-content ul li { font-size: .88rem; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; line-height: 1.7; }
+    .post-content ul li::before { content: "—"; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .post-content ul li:last-child { border-bottom: none; }
 
-    .post-body h2 {
-      font-family: 'Bodoni Moda', serif;
-      font-size: clamp(1.3rem, 3vw, 1.7rem);
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: -0.5px;
-      margin: 48px 0 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--line);
-    }
-    .post-body h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 32px 0 12px;
-    }
+    /* ── HIGHLIGHT BOX ── */
+    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: var(--muted); }
+    .hbox strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; display: block; margin-bottom: 6px; }
+    .hbox.alt { border-left-color: var(--accent-light); background: var(--white); }
 
-    .post-body ul { list-style: none; margin: 0 0 24px; padding: 0; }
-    .post-body ul li {
-      font-size: .88rem;
-      color: var(--muted);
-      padding: 10px 0 10px 20px;
-      border-bottom: 1px solid var(--line);
-      position: relative;
-      line-height: 1.7;
-    }
-    .post-body ul li:last-child { border-bottom: none; }
-    .post-body ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    /* ── BLOCKQUOTE ── */
+    blockquote { border-left: 3px solid var(--accent-light); padding: 16px 24px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--muted); background: var(--white); line-height: 1.7; }
 
-    /* ── CALLOUT BOXES ── */
-    .insight-box {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--accent);
-      padding: 24px 28px;
-      margin: 32px 0;
-      font-size: .88rem;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-    .insight-box strong { color: var(--text); display: block; margin-bottom: 6px; font-size: .7rem; letter-spacing: 3px; text-transform: uppercase; }
-    .insight-box.contrast {
-      background: var(--accent);
-      border-color: var(--accent-3);
-      color: rgba(255,255,255,.85);
-    }
-    .insight-box.contrast strong { color: #fff; }
-
-    /* ── COMPARISON TABLE ── */
-    .compare-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: .82rem; }
-    .compare-table th {
-      background: var(--accent);
-      color: var(--white);
-      padding: 12px 18px;
-      text-align: left;
-      font-size: .58rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .compare-table th:first-child { border-radius: 0; }
-    .compare-table td {
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      vertical-align: top;
-      line-height: 1.6;
-    }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:nth-child(even) td { background: var(--bg-2); }
-    .compare-table td:first-child { font-weight: 600; color: var(--text); font-size: .8rem; }
-    .compare-table td.good { color: var(--accent); font-weight: 600; }
-    .compare-table td.bad { color: #c0392b; }
-
-    /* ── PULL QUOTE ── */
-    blockquote {
-      margin: 40px 0;
-      padding: 28px 36px;
-      background: var(--bg-2);
-      border-left: none;
-      position: relative;
-    }
-    blockquote::before {
-      content: "\201C";
-      font-family: 'Bodoni Moda', serif;
-      font-size: 5rem;
-      line-height: 1;
-      color: var(--accent-light);
-      position: absolute;
-      top: 10px;
-      left: 24px;
-      opacity: .4;
-    }
-    blockquote p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 12px !important;
-      position: relative;
-      z-index: 1;
-    }
-    blockquote cite {
-      font-size: .58rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--soft);
-      font-style: normal;
-    }
-
-    /* ── STAT BAND ── */
-    .stat-band {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      margin: 36px 0;
-    }
-    .stat-band-item {
-      background: var(--white);
-      padding: 24px 20px;
-      text-align: center;
-    }
-    .stat-val { font-family: 'Bodoni Moda', serif; font-size: 2rem; font-weight: 900; color: var(--accent); display: block; line-height: 1; }
-    .stat-lbl { font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-top: 8px; display: block; }
-
-    /* ── REVEAL ANIMATION ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── IN-ARTICLE CTA ── */
-    .inline-cta {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 36px 40px;
-      margin: 48px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .inline-cta::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    }
-    .inline-cta-eyebrow { font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-    .inline-cta h3 { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: 10px; }
-    .inline-cta p { font-size: .85rem; color: var(--soft); max-width: 440px; margin: 0 auto 24px; line-height: 1.7; }
-    .cta-btn {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--white);
-      padding: 14px 36px;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background .3s, transform .2s;
-    }
-    .cta-btn:hover { background: var(--accent-3); color: var(--white); transform: translateY(-1px); }
+    /* ── CTA BOX ── */
+    .cta-box { background: var(--accent-3); color: var(--white); padding: 44px 40px; margin: 52px 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-light), transparent); }
+    .cta-eyebrow { font-size: .52rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 14px; font-family: 'Montserrat', sans-serif; }
+    .cta-box h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .cta-box h3 em { color: var(--accent-light); font-style: italic; }
+    .cta-box p { font-size: .85rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.8; font-family: 'Montserrat', sans-serif; }
+    .cta-btn { display: inline-block; background: var(--white); color: var(--accent-3); padding: 14px 38px; font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; font-family: 'Montserrat', sans-serif; }
+    .cta-btn:hover { background: transparent; color: var(--white); border-color: rgba(255,255,255,.4); }
 
     /* ── POST NAV ── */
-    .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 60px; }
-    .post-nav-item { background: var(--white); padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; transition: background .3s; text-decoration: none; }
-    .post-nav-item:hover { background: var(--bg-2); }
+    .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+    .post-nav-item { display: flex; flex-direction: column; gap: 6px; padding: 20px; background: var(--white); border: 1px solid var(--line); text-decoration: none; transition: border-color .3s, background .3s; }
+    .post-nav-item:hover { border-color: var(--accent); background: var(--bg-2); }
     .post-nav-item.next { text-align: right; }
-    .pn-dir { font-size: .52rem; letter-spacing: 3px; text-transform: uppercase; color: var(--soft); }
-    .pn-title { font-size: .78rem; color: var(--text); font-weight: 500; line-height: 1.4; }
+    .pn-dir { font-size: .5rem; letter-spacing: 3px; text-transform: uppercase; color: var(--soft); font-family: 'Montserrat', sans-serif; }
+    .pn-title { font-size: .78rem; color: var(--text); font-weight: 500; line-height: 1.4; font-family: 'Montserrat', sans-serif; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── SIDEBAR ── */
-    .sidebar { position: sticky; top: 88px; height: fit-content; display: flex; flex-direction: column; gap: 20px; }
-    .cta-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    }
-    .cta-card-eyebrow { font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 10px; }
-    .cta-card-title { font-family: 'Bodoni Moda', serif; font-size: 1.25rem; font-weight: 900; color: var(--text); line-height: 1.2; margin-bottom: 10px; }
-    .cta-card-title em { color: var(--accent); font-style: italic; }
-    .cta-card-sub { font-size: .78rem; color: var(--soft); margin-bottom: 18px; line-height: 1.7; }
-    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-bottom: 18px; }
-    .stat-item { background: var(--bg-2); padding: 14px 10px; text-align: center; }
-    .sv { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; font-weight: 900; color: var(--accent); display: block; }
-    .sl { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-top: 4px; display: block; }
-    .sidebar-btn {
-      display: block;
-      background: var(--accent);
-      color: var(--white);
-      padding: 13px;
-      text-align: center;
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background .3s;
-    }
-    .sidebar-btn:hover { background: var(--accent-3); color: var(--white); }
-    .sidebar-card { background: var(--white); border: 1px solid var(--line); padding: 24px 28px; }
-    .sc-title { font-size: .55rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); display: block; }
+    .sidebar { position: sticky; top: 88px; height: fit-content; }
+    .cta-card { background: var(--accent-3); padding: 30px 24px; margin-bottom: 20px; color: var(--white); }
+    .cta-card-eyebrow { font-size: .5rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+    .cta-card-title { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.2; }
+    .cta-card-title em { color: var(--accent-light); font-style: italic; }
+    .cta-card-sub { font-size: .75rem; color: rgba(255,255,255,.68); line-height: 1.7; margin-bottom: 16px; font-family: 'Montserrat', sans-serif; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 18px; }
+    .stat-item { background: rgba(255,255,255,.08); padding: 12px 10px; text-align: center; }
+    .sv { display: block; font-family: 'Bodoni Moda', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .sl { display: block; font-size: .48rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 3px; font-family: 'Montserrat', sans-serif; }
+    .sidebar-btn { display: block; background: var(--white); color: var(--accent-3); padding: 12px; text-align: center; font-size: .55rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; font-family: 'Montserrat', sans-serif; }
+    .sidebar-btn:hover { background: transparent; color: var(--white); border-color: rgba(255,255,255,.4); }
+
+    .sidebar-card { background: var(--white); border: 1px solid var(--line); padding: 24px; margin-bottom: 20px; }
+    .sc-title { display: block; font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-family: 'Montserrat', sans-serif; }
     .rel-list { list-style: none; }
-    .rel-list li { border-bottom: 1px solid var(--line); }
+    .rel-list li { padding: 8px 0; border-bottom: 1px solid var(--line); }
     .rel-list li:last-child { border-bottom: none; }
-    .rel-list a { font-size: .75rem; color: var(--muted); text-decoration: none; padding: 9px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; transition: color .3s; }
-    .rel-list a::before { content: "→"; color: var(--accent); flex-shrink: 0; font-size: .7rem; margin-top: 1px; }
+    .rel-list a { font-size: .75rem; color: var(--muted); text-decoration: none; transition: color .3s; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; font-family: 'Montserrat', sans-serif; }
+    .rel-list a::before { content: "—"; color: var(--accent-light); flex-shrink: 0; }
     .rel-list a:hover { color: var(--accent); }
 
     /* ── FOOTER ── */
-    .site-footer { background: var(--text); color: rgba(255,255,255,.5); padding: 60px 52px 32px; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 32px; }
-    .footer-logo { font-family: 'Bodoni Moda', serif; font-size: .9rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.9); text-decoration: none; display: block; margin-bottom: 14px; }
-    .footer-tagline { font-size: .72rem; line-height: 1.7; color: rgba(255,255,255,.4); max-width: 260px; }
-    .footer-h { font-size: .55rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 14px; font-weight: 600; }
+    .site-footer { background: var(--text); color: rgba(255,255,255,.5); margin-top: 80px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 64px 52px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-logo { font-family: 'Bodoni Moda', serif; font-size: 1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--white); text-decoration: none; display: block; margin-bottom: 14px; }
+    .footer-tagline { font-size: .72rem; line-height: 1.8; color: rgba(255,255,255,.4); font-family: 'Montserrat', sans-serif; }
+    .footer-h { font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 16px; font-weight: 600; font-family: 'Montserrat', sans-serif; }
     .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 8px; }
-    .footer-links a { font-size: .72rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .3s; }
-    .footer-links a:hover { color: rgba(255,255,255,.8); }
-    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-copy { font-size: .52rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.25); }
-    .footer-socials { display: flex; gap: 20px; }
-    .footer-socials a { font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .3s; }
-    .footer-socials a:hover { color: rgba(255,255,255,.8); }
+    .footer-links li { padding: 5px 0; }
+    .footer-links a { font-size: .72rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .3s; font-family: 'Montserrat', sans-serif; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 52px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.25); font-family: 'Montserrat', sans-serif; }
+    .footer-socials { display: flex; gap: 24px; }
+    .footer-socials a { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .3s; font-family: 'Montserrat', sans-serif; }
+    .footer-socials a:hover { color: var(--white); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .post-layout { grid-template-columns: 1fr; padding: 32px 28px 80px; }
+    /* ── EXTRA COMPONENTS (kept, but styled to fit the same theme) ── */
+    .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 32px 0; }
+    .stat-band-item { background: var(--white); border: 1px solid var(--line); padding: 22px 18px; text-align: center; }
+    .stat-val { display: block; font-family: 'Bodoni Moda', serif; font-size: 1.7rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .stat-lbl { display: block; margin-top: 8px; font-size: .52rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); font-family: 'Montserrat', sans-serif; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 32px 0; background: var(--white); border: 1px solid var(--line); }
+    .compare-table th { text-align: left; padding: 12px 14px; font-size: .52rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); background: var(--accent-3); font-family: 'Montserrat', sans-serif; }
+    .compare-table td { padding: 12px 14px; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); line-height: 1.6; }
+    .compare-table td:first-child { color: var(--text); font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: .8rem; }
+    .compare-table td.good { color: var(--accent); font-weight: 600; }
+    .compare-table td.bad { color: #9b2c2c; font-weight: 600; }
+
+    @media (max-width: 1024px) {
+      .post-layout { grid-template-columns: 1fr; }
       .sidebar { position: static; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
-      .nav { padding: 0 28px; }
-      .breadcrumb { padding: 88px 28px 0; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-    }
-    @media (max-width: 600px) {
-      .post-layout { padding: 24px 20px 60px; }
-      .breadcrumb { padding: 80px 20px 0; }
-      .stat-band { grid-template-columns: 1fr 1fr; }
-      .stat-band-item:last-child { grid-column: span 2; }
+      .breadcrumb { padding: 88px 24px 0; }
+      .post-layout { padding: 32px 24px 80px; }
       .post-nav { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .site-footer { padding: 48px 20px 28px; }
-      .inline-cta { padding: 28px 24px; }
-      .nav { padding: 0 20px; }
+      .footer-inner { padding: 48px 24px 32px; grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { padding: 20px 24px; flex-direction: column; text-align: center; }
+      .stat-band { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
 <div class="scroll-bar" id="scrollBar"></div>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-  <a href="../../index.html">Home</a>
-  <a href="../../index.html#method">The Method</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="../../index.html#story">Story</a>
+  <a href="../../index.html#method">Method</a>
   <a href="../../index.html#results">Results</a>
   <a href="../index.html">Blog</a>
-  <a href="../../index.html#pricing">Get Strategy</a>
+  <a href="../../index.html#pricing">Get Empire</a>
 </div>
 
 <!-- NAV -->
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
-  <a href="../index.html" class="nav-logo" aria-label="MYONLYPROFIT Home">MYONLYPROFIT</a>
+  <a href="../index.html" class="nav-logo">MYONLYPROFIT</a>
   <div class="nav-links">
-    <a href="../../index.html#method">The Method</a>
+    <a href="../../index.html#story">Story</a>
+    <a href="../../index.html#method">Method</a>
     <a href="../../index.html#results">Results</a>
     <a href="../index.html">Blog</a>
-    <a href="../../index.html#pricing" class="nav-cta">Get Strategy</a>
+    <a href="../../index.html#pricing" class="nav-cta">Get Empire</a>
   </div>
-  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -439,9 +286,9 @@
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="../../index.html">MYONLYPROFIT</a>
-  <span class="bc-sep">/</span>
+  <span class="bc-sep">›</span>
   <a href="../index.html">Blog</a>
-  <span class="bc-sep">/</span>
+  <span class="bc-sep">›</span>
   <span aria-current="page">Scaling Mindset</span>
 </nav>
 
@@ -451,7 +298,7 @@
     <article itemscope itemtype="https://schema.org/Article">
 
       <!-- HERO -->
-      <header class="post-hero">
+      <header class="post-hero reveal">
         <span class="post-eyebrow">Advanced Strategy</span>
         <h1 class="post-title" itemprop="headline">
           From Creator to CEO:<br/>
@@ -466,8 +313,8 @@
           <span>Advanced · Growth</span>
         </div>
         <div class="author-strip" itemprop="author" itemscope itemtype="https://schema.org/Organization">
-          <div class="author-avatar" aria-hidden="true">
-            <img src="../../images/logo.avif" alt="MYONLYPROFIT logo" loading="lazy" />
+          <div class="author-avatar">
+            <img src="../../images/logo-blog.png" alt="MYONLYPROFIT Logo" loading="lazy" />
           </div>
           <div>
             <div class="author-name" itemprop="name">MYONLYPROFIT</div>
@@ -476,14 +323,14 @@
         </div>
       </header>
 
-      <!-- BODY -->
-      <div class="post-body post-intro" itemprop="articleBody">
+      <!-- CONTENT -->
+      <div class="post-content" itemprop="articleBody">
 
-        <p>There is a ceiling most OnlyFans creators hit somewhere between €2,000 and €3,000 a month. They're posting consistently. They have a real subscriber base. They're doing everything they were told to do. But growth has stalled, motivation is flagging, and the numbers just won't move. The cause is almost always the same: <strong>they are still operating with a creator's mindset when the situation demands a CEO's mindset.</strong></p>
+        <p class="reveal post-intro">There is a ceiling most OnlyFans creators hit somewhere between €2,000 and €3,000 a month. They're posting consistently. They have a real subscriber base. They're doing everything they were told to do. But growth has stalled, motivation is flagging, and the numbers just won't move. The cause is almost always the same: <strong>they are still operating with a creator's mindset when the situation demands a CEO's mindset.</strong></p>
 
-        <p>These are not variations of the same thing. They are genuinely different modes of operating — different questions, different priorities, different relationships with time and energy. Understanding the gap between them is the first step to crossing it.</p>
+        <p class="reveal">These are not variations of the same thing. They are genuinely different modes of operating — different questions, different priorities, different relationships with time and energy. Understanding the gap between them is the first step to crossing it.</p>
 
-        <div class="stat-band reveal">
+        <div class="stat-band reveal" aria-label="Key stats">
           <div class="stat-band-item">
             <span class="stat-val">€2–3K</span>
             <span class="stat-lbl">Where Most Creators Plateau</span>
@@ -494,37 +341,37 @@
           </div>
           <div class="stat-band-item">
             <span class="stat-val">5</span>
-            <span class="stat-lbl">Core Metrics That Actually Matter</span>
+            <span class="stat-lbl">Core Metrics That Matter</span>
           </div>
         </div>
 
-        <h2>What Creator Mode Actually Looks Like</h2>
+        <h2 class="reveal">What Creator Mode Actually Looks Like</h2>
 
-        <p>Creator mode is entirely output-focused: what to post today, which DMs need replies, whether the latest video performed well. It's reactive. It's task-driven. It lives completely in the present tense. None of this is wrong — without creative output, nothing exists. But creator mode has a structural ceiling, and it's not a soft ceiling. It's hard.</p>
+        <p class="reveal">Creator mode is entirely output-focused: what to post today, which DMs need replies, whether the latest video performed well. It's reactive. It's task-driven. It lives completely in the present tense. None of this is wrong — without creative output, nothing exists. But creator mode has a structural ceiling, and it's not a soft ceiling. It's hard.</p>
 
-        <p>In creator mode, your income equation is simple: <strong>earnings = your effort × your effective rate.</strong> That relationship is linear. There is only so much effort a single person can apply. Linear effort produces linear income. When you run out of effort, you run out of growth.</p>
+        <p class="reveal">In creator mode, your income equation is simple: <strong>earnings = your effort × your effective rate.</strong> That relationship is linear. There is only so much effort a single person can apply. Linear effort produces linear income. When you run out of effort, you run out of growth.</p>
 
-        <div class="insight-box reveal">
+        <div class="hbox reveal">
           <strong>The Two Questions That Define Your Operating Mode</strong>
-          The creator asks: "What do I post today?" — and ends up with a list of tasks.<br/><br/>
-          The CEO asks: "What system ensures the right content goes out every day, regardless of whether I'm thinking about it?" — and ends up with a machine.
+          The creator asks: “What do I post today?” — and ends up with a list of tasks.<br/><br/>
+          The CEO asks: “What system ensures the right content goes out every day, regardless of whether I’m thinking about it?” — and ends up with a machine.
         </div>
 
-        <p>Creator mode is also heavily dependent on motivation and emotional state, which makes income unpredictable. A difficult week, a creative block, any disruption to routine — and the output drops, which means income drops. The system has no buffer, no resilience, no redundancy. It is entirely you, operating alone, in real time.</p>
+        <p class="reveal">Creator mode is also heavily dependent on motivation and emotional state, which makes income unpredictable. A difficult week, a creative block, any disruption to routine — and the output drops, which means income drops. The system has no buffer, no resilience, no redundancy. It is entirely you, operating alone, in real time.</p>
 
-        <h2>What CEO Mode Actually Looks Like</h2>
+        <h2 class="reveal">What CEO Mode Actually Looks Like</h2>
 
-        <p>CEO mode is not about being more important than your subscribers or detaching from the creative work. It is about building the <strong>architecture around the creative work</strong> — the structures, systems, and processes that allow quality output to happen at scale, without requiring your full attention every single day.</p>
+        <p class="reveal">CEO mode is not about being more important than your subscribers or detaching from the creative work. It is about building the <strong>architecture around the creative work</strong> — the structures, systems, and processes that allow quality output to happen at scale, without requiring your full attention every single day.</p>
 
-        <p>Instead of asking "what DMs should I send today?", the CEO question is: "What DM framework produces consistent conversions at any volume, without requiring me to reinvent the wheel each time?" Instead of "what should I post?", it's: "What content calendar and batching system keeps the feed active and strategic with minimal daily decision-making?"</p>
+        <p class="reveal">Instead of asking “what DMs should I send today?”, the CEO question is: “What DM framework produces consistent conversions at any volume, without requiring me to reinvent the wheel each time?” Instead of “what should I post?”, it’s: “What content calendar and batching system keeps the feed active and strategic with minimal daily decision-making?”</p>
 
-        <p>This shift is about building leverage. Leverage is what allows income to grow without personal effort growing proportionally. Systems, templates, automations, and — at higher volumes — people: <strong>each lever you add extends what a single creator can produce and earn.</strong></p>
+        <p class="reveal">This shift is about building leverage. Leverage is what allows income to grow without personal effort growing proportionally. Systems, templates, automations, and — at higher volumes — people: <strong>each lever you add extends what a single creator can produce and earn.</strong></p>
 
-        <h2>The Specific Shift That Unlocks Scale</h2>
+        <h2 class="reveal">The Specific Shift That Unlocks Scale</h2>
 
-        <p>The real pivot happens the moment you stop measuring productive days by how hard you worked, and start measuring them by how well your systems performed without you. In creator mode, a day where you created four hours of content feels like a success. In CEO mode, a day where your scheduled posts went live, your DM sequences converted, your analytics updated, and you spent ninety minutes on strategy — that is a higher-value day, even though it required less physical effort.</p>
+        <p class="reveal">The real pivot happens the moment you stop measuring productive days by how hard you worked, and start measuring them by how well your systems performed without you. In creator mode, a day where you created four hours of content feels like a success. In CEO mode, a day where your scheduled posts went live, your DM sequences converted, your analytics updated, and you spent ninety minutes on strategy — that is a higher-value day, even though it required less physical effort.</p>
 
-        <p>This reframe is uncomfortable at first because creating is tangible and systems are abstract. The discomfort is real and it is normal. But the creators who scale past €8,000, €12,000, €20,000 a month have almost universally made this transition. They didn't get there by working harder in creator mode. They got there by building something that works when they're not actively pushing it.</p>
+        <p class="reveal">This reframe is uncomfortable at first because creating is tangible and systems are abstract. The discomfort is real and it is normal. But the creators who scale past €8,000, €12,000, €20,000 a month have almost universally made this transition. They didn't get there by working harder in creator mode. They got there by building something that works when they're not actively pushing it.</p>
 
         <table class="compare-table reveal" aria-label="Creator mode versus CEO mode comparison">
           <thead>
@@ -568,27 +415,27 @@
           </tbody>
         </table>
 
-        <h2>Delegation: When It Helps and When It Doesn't</h2>
+        <h2 class="reveal">Delegation: When It Helps and When It Doesn't</h2>
 
-        <p>A common misread of the CEO mindset is that it means outsourcing immediately. It doesn't. Premature delegation — before systems are established — is one of the most reliable ways to create chaos and spend money you don't recoup. You cannot successfully delegate what isn't systematised first.</p>
+        <p class="reveal">A common misread of the CEO mindset is that it means outsourcing immediately. It doesn't. Premature delegation — before systems are established — is one of the most reliable ways to create chaos and spend money you don't recoup. You cannot successfully delegate what isn't systematised first.</p>
 
-        <p>What the CEO mindset means at the earlier stages is building documentation: clear processes, repeatable frameworks, templated responses, defined content pillars. These serve two purposes simultaneously. First, they remove daily decision-making load from you. Second, they create the infrastructure that makes delegation possible and effective if and when volume demands it.</p>
+        <p class="reveal">What the CEO mindset means at the earlier stages is building documentation: clear processes, repeatable frameworks, templated responses, defined content pillars. These serve two purposes simultaneously. First, they remove daily decision-making load from you. Second, they create the infrastructure that makes delegation possible and effective if and when volume demands it.</p>
 
-        <p>At higher volumes — typically beyond 300 to 500 active subscribers — certain operational functions can be delegated without affecting the subscriber experience. DM management with tight brand guidelines, content scheduling, analytics review: these are operational roles, not creative ones. Delegating them frees your attention for the things only you can do.</p>
+        <p class="reveal">At higher volumes — typically beyond 300 to 500 active subscribers — certain operational functions can be delegated without affecting the subscriber experience. DM management with tight brand guidelines, content scheduling, analytics review: these are operational roles, not creative ones. Delegating them frees your attention for the things only you can do.</p>
 
-        <div class="insight-box contrast reveal">
+        <div class="hbox alt reveal">
           <strong>The Delegation Sequence That Works</strong>
           Build the system → document the system → test the system yourself → delegate the system.<br/><br/>
           Skipping any step produces unpredictable results. The documentation phase is not optional — it is what makes everything after it possible.
         </div>
 
-        <h2>Data: The CEO's Structural Advantage</h2>
+        <h2 class="reveal">Data: The CEO's Structural Advantage</h2>
 
-        <p>Creators run on feel. CEOs run on data. This isn't a judgment — it's a description of two genuinely different feedback loops. "That post felt good" is a creator metric. "That content format drives a 4.1% conversion rate versus 1.7% for the other format" is a CEO metric. The quality of decisions made from real data versus intuition compounds dramatically over time.</p>
+        <p class="reveal">Creators run on feel. CEOs run on data. This isn't a judgment — it's a description of two genuinely different feedback loops. “That post felt good” is a creator metric. “That content format drives a 4.1% conversion rate versus 1.7% for the other format” is a CEO metric. The quality of decisions made from real data versus intuition compounds dramatically over time.</p>
 
-        <p>You don't need sophisticated analytics infrastructure. You need consistent tracking of a small, specific set of metrics — reviewed weekly, not monthly:</p>
+        <p class="reveal">You don't need sophisticated analytics infrastructure. You need consistent tracking of a small, specific set of metrics — reviewed weekly, not monthly:</p>
 
-        <ul>
+        <ul class="reveal">
           <li><strong>Content views</strong> — Which formats are getting seen</li>
           <li><strong>Profile visit to subscriber conversion rate</strong> — How effective your profile is at converting traffic</li>
           <li><strong>PPV purchase rate by content type</strong> — What subscribers actually buy, not just what they view</li>
@@ -596,43 +443,41 @@
           <li><strong>Monthly subscriber retention rate</strong> — The single most important long-term health indicator</li>
         </ul>
 
-        <p>These five numbers, tracked consistently every week, provide more decision-relevant information than any amount of platform browsing or competitor observation. The creator who tracks these for six months has a compounding advantage over the creator who doesn't.</p>
+        <p class="reveal">These five numbers, tracked consistently every week, provide more decision-relevant information than any amount of platform browsing or competitor observation. The creator who tracks these for six months has a compounding advantage over the creator who doesn't.</p>
 
-        <blockquote>
-          <p>The day I stopped asking what I should post and started asking what my data told me to post — that was the day income stopped being random.</p>
-          <cite>— Creator in our program, scaled from €2.4K to €9K/month in 7 months</cite>
-        </blockquote>
+        <blockquote class="reveal">“The day I stopped asking what I should post and started asking what my data told me to post — that was the day income stopped being random.” — creator in our program, scaled from €2.4K to €9K/month in 7 months</blockquote>
 
-        <h2>The Content System That Makes Batching Work</h2>
+        <h2 class="reveal">The Content System That Makes Batching Work</h2>
 
-        <p>One of the most tangible early applications of CEO thinking is the shift from daily content creation to batched content production. Daily creation keeps you permanently reactive — every morning starts with the same question. Batching breaks the cycle.</p>
+        <p class="reveal">One of the most tangible early applications of CEO thinking is the shift from daily content creation to batched content production. Daily creation keeps you permanently reactive — every morning starts with the same question. Batching breaks the cycle.</p>
 
-        <p>A functional batching system looks like this: one focused session per week (or longer sessions every two weeks) producing a full pipeline of scheduled content. Not just created, but planned, formatted, captioned, and queued. Your daily job becomes monitoring and engaging — not creating from scratch under time pressure.</p>
+        <p class="reveal">A functional batching system looks like this: one focused session per week (or longer sessions every two weeks) producing a full pipeline of scheduled content. Not just created, but planned, formatted, captioned, and queued. Your daily job becomes monitoring and engaging — not creating from scratch under time pressure.</p>
 
-        <p>This approach does two things simultaneously. It removes the cognitive overhead of daily decisions. And it forces you to think strategically about content variety, pacing, and audience engagement arc — because you are planning in advance rather than reacting in the moment. <strong>Strategic content consistently outperforms reactive content.</strong> Not because it's better in any single piece, but because it is coherent, paced, and intentional across a sequence.</p>
+        <p class="reveal">This approach does two things simultaneously. It removes the cognitive overhead of daily decisions. And it forces you to think strategically about content variety, pacing, and audience engagement arc — because you are planning in advance rather than reacting in the moment. <strong>Strategic content consistently outperforms reactive content.</strong> Not because it's better in any single piece, but because it is coherent, paced, and intentional across a sequence.</p>
 
-        <div class="inline-cta reveal">
-          <div class="inline-cta-eyebrow">The System Behind Scale</div>
-          <h3>Think Like a CEO. Earn Like One.</h3>
-          <p>The Complete Kickstart is built around the CEO mindset — systems, data frameworks, content architecture, and delegation-ready processes that produce consistent income without constant effort to maintain.</p>
+        <!-- CTA BOX -->
+        <div class="cta-box reveal">
+          <span class="cta-eyebrow">The System Behind Scale</span>
+          <h3>Think Like a CEO. <em>Earn Like One.</em></h3>
+          <p>The Empire Strategy is built around the CEO mindset — systems, data frameworks, content architecture, and delegation-ready processes that produce consistent income without constant effort to maintain.</p>
           <a href="../../index.html#pricing" class="cta-btn">Get the Strategy →</a>
         </div>
 
-        <h2>The Revenue Architecture Question</h2>
+        <h2 class="reveal">The Revenue Architecture Question</h2>
 
-        <p>Creator mode typically has one or two revenue streams: subscription income and occasional PPV. CEO mode asks a different question: what is the full revenue architecture, and is every element optimised?</p>
+        <p class="reveal">Creator mode typically has one or two revenue streams: subscription income and occasional PPV. CEO mode asks a different question: what is the full revenue architecture, and is every element optimised?</p>
 
-        <p>A complete revenue architecture for a growing creator typically includes subscription income (the base), PPV content (the scalable high-margin layer), tipping mechanics (anchored and triggered), custom content (high-ticket, low-volume), and upsell sequences (automated PPV drop campaigns to existing subscribers). Each of these has different conversion dynamics, different audience segments, and different leverage points.</p>
+        <p class="reveal">A complete revenue architecture for a growing creator typically includes subscription income (the base), PPV content (the scalable high-margin layer), tipping mechanics (anchored and triggered), custom content (high-ticket, low-volume), and upsell sequences (automated PPV drop campaigns to existing subscribers). Each of these has different conversion dynamics, different audience segments, and different leverage points.</p>
 
-        <p>Most creators in creator mode leave the majority of their revenue architecture untouched. Not because the mechanisms don't exist, but because building them requires thinking in systems — which is CEO mode, not creator mode. <strong>The income gap between creators at the same follower count is almost entirely explained by revenue architecture, not audience size.</strong></p>
+        <p class="reveal">Most creators in creator mode leave the majority of their revenue architecture untouched. Not because the mechanisms don't exist, but because building them requires thinking in systems — which is CEO mode, not creator mode. <strong>The income gap between creators at the same follower count is almost entirely explained by revenue architecture, not audience size.</strong></p>
 
-        <h2>The Compounding Effect of Systems</h2>
+        <h2 class="reveal">The Compounding Effect of Systems</h2>
 
-        <p>The final and most important argument for the CEO mindset is compounding. Systems improve over time. Each data point makes the next decision better. Each template gets refined. Each process gets tighter. A creator who builds systems in month three will be operating at significantly higher efficiency by month nine — not because they worked harder, but because the system improved underneath them.</p>
+        <p class="reveal">The final and most important argument for the CEO mindset is compounding. Systems improve over time. Each data point makes the next decision better. Each template gets refined. Each process gets tighter. A creator who builds systems in month three will be operating at significantly higher efficiency by month nine — not because they worked harder, but because the system improved underneath them.</p>
 
-        <p>Creator mode does not compound in the same way. Effort applied today doesn't make tomorrow's effort more effective. There is no feedback loop that builds on itself. The ceiling stays the same.</p>
+        <p class="reveal">Creator mode does not compound in the same way. Effort applied today doesn't make tomorrow's effort more effective. There is no feedback loop that builds on itself. The ceiling stays the same.</p>
 
-        <p>This is the structural reason why the creator-to-CEO transition is not just a mindset preference. It is the mechanism of scale. Without it, the ceiling is fixed. With it, the ceiling rises every time the system improves.</p>
+        <p class="reveal">This is the structural reason why the creator-to-CEO transition is not just a mindset preference. It is the mechanism of scale. Without it, the ceiling is fixed. With it, the ceiling rises every time the system improves.</p>
 
         <!-- POST NAVIGATION -->
         <nav class="post-nav" aria-label="Article navigation">
@@ -655,7 +500,7 @@
 
     <div class="cta-card reveal">
       <span class="cta-card-eyebrow">Self-Guided System</span>
-      <h3 class="cta-card-title">Own The <em>Complete</em> Playbook</h3>
+      <h3 class="cta-card-title">The Complete <em>Empire</em> Strategy</h3>
       <p class="cta-card-sub">125 pages. 5 systems. The full CEO framework — content, DMs, pricing, data, and delegation. One-time purchase, 100% yours.</p>
       <div class="stat-row">
         <div class="stat-item"><span class="sv">€6.4K</span><span class="sl">Avg Monthly</span></div>
@@ -692,7 +537,7 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="footer-inner">
     <div>
       <a href="../../index.html" class="footer-logo">MYONLYPROFIT</a>
@@ -710,10 +555,10 @@
     <div>
       <h4 class="footer-h">Blog</h4>
       <ul class="footer-links">
-        <li><a href="../scaling-mindset/index.html">Scaling Mindset</a></li>
-        <li><a href="../agency-vs-solo/index.html">Agency vs Solo</a></li>
-        <li><a href="../pricing-psychology/index.html">Pricing Strategy</a></li>
-        <li><a href="../fan-psychology/index.html">Fan Psychology</a></li>
+        <li><a href="../dm-mistakes/index.html">DM Strategy</a></li>
+        <li><a href="../tiktok-viral/index.html">TikTok Traffic</a></li>
+        <li><a href="../branding-basics/index.html">Branding</a></li>
+        <li><a href="../pricing-psychology/index.html">Pricing</a></li>
       </ul>
     </div>
     <div>
@@ -736,9 +581,9 @@
 </footer>
 
 <script>
-  // Scroll progress bar
   const scrollBar = document.getElementById('scrollBar');
   const nav = document.getElementById('mainNav');
+
   window.addEventListener('scroll', () => {
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
@@ -746,15 +591,16 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Mobile menu
   const ham = document.getElementById('hamburger');
   const mm = document.getElementById('mobileMenu');
+
   ham.addEventListener('click', () => {
     const isOpen = mm.classList.toggle('open');
     ham.classList.toggle('open', isOpen);
     ham.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     ham.classList.remove('open');
     mm.classList.remove('open');
@@ -762,10 +608,10 @@
     document.body.style.overflow = '';
   }));
 
-  // Reveal on scroll
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
