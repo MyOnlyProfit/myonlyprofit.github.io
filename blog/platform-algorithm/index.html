@@ -129,26 +129,33 @@
     .post-title em { color: var(--accent); font-style: italic; }
     .post-meta-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
     .post-meta-sep { width: 1px; height: 12px; background: var(--line-strong); }
-    .author-strip { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
-    .author-avatar { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .author-avatar img { width: 100%; height: 100%; object-fit: contain; }
-    .author-name { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); font-weight: 600; }
-    .author-role { font-size: .58rem; color: var(--soft); margin-top: 2px; }
 
-    /* ── POST CONTENT ── */
-    .post-content { font-size: .9rem; color: var(--muted); }
-    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 44px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin: 28px 0 10px; }
-    .post-content p { margin-bottom: 18px; line-height: 1.85; }
-    .post-content p strong { color: var(--text); font-weight: 600; }
+    .author-strip { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
+    .author-avatar {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .author-name { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); font-weight: 600; }
+    .author-role { font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--soft); margin-top: 2px; }
+
+    /* ── POST CONTENT (match your “first” page) ── */
+    .post-content { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--muted); }
+    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); position: relative; }
+    .post-content h2::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 2px; background: var(--accent); }
+    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 32px 0 12px; }
+    .post-content p { margin-bottom: 22px; line-height: 1.85; }
+    .post-content p strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .post-content ul { list-style: none; margin: 0 0 22px; padding: 0; }
     .post-content ul li { font-size: .88rem; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; line-height: 1.7; }
-    .post-content ul li::before { content: "—"; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .post-content ul li::before { content: "—"; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
     .post-content ul li:last-child { border-bottom: none; }
 
     /* ── HIGHLIGHT BOX ── */
-    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-size: .88rem; line-height: 1.85; color: var(--muted); }
-    .hbox strong { color: var(--text); font-weight: 600; }
+    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: var(--muted); }
+    .hbox strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .hbox.alt { border-left-color: var(--accent-light); background: var(--white); }
 
     /* ── BLOCKQUOTE ── */
@@ -237,6 +244,15 @@
 
 <div class="scroll-bar" id="scrollBar"></div>
 
+<!-- MOBILE MENU (moved above nav to match the “first” page structure) -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="../../index.html#story">Story</a>
+  <a href="../../index.html#method">Method</a>
+  <a href="../../index.html#results">Results</a>
+  <a href="../index.html">Blog</a>
+  <a href="../../index.html#pricing">Get Empire</a>
+</div>
+
 <!-- NAV -->
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
   <a href="../index.html" class="nav-logo">MYONLYPROFIT</a>
@@ -251,15 +267,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <a href="../../index.html#story">Story</a>
-  <a href="../../index.html#method">Method</a>
-  <a href="../../index.html#results">Results</a>
-  <a href="../index.html">Blog</a>
-  <a href="../../index.html#pricing">Get Empire</a>
-</div>
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -276,7 +283,7 @@
     <article itemscope itemtype="https://schema.org/Article">
 
       <!-- HERO -->
-      <header class="post-hero">
+      <header class="post-hero reveal">
         <span class="post-eyebrow">Platform Intelligence</span>
         <h1 class="post-title" itemprop="headline">How the OnlyFans <em>Algorithm</em><br/>Actually Works</h1>
         <div class="post-meta-row" itemprop="datePublished" content="2026-04-01">
@@ -287,7 +294,9 @@
           <span>Platform Strategy</span>
         </div>
         <div class="author-strip" itemprop="author" itemscope itemtype="https://schema.org/Organization">
-          <div class="author-avatar"><img src="../../images/logo-blog.png" alt="MYONLYPROFIT"></div>
+          <div class="author-avatar">
+            <img src="../../images/logo-blog.png" alt="MYONLYPROFIT Logo">
+          </div>
           <div>
             <div class="author-name" itemprop="name">MYONLYPROFIT</div>
             <div class="author-role">Creator Strategy Team</div>
@@ -298,23 +307,23 @@
       <!-- CONTENT -->
       <div class="post-content" itemprop="articleBody">
 
-        <p>OnlyFans doesn't talk about its algorithm publicly. Neither do most creators who've figured it out — because understanding it is a competitive edge they'd rather keep. What follows is built from real account data across multiple creators over multiple years.</p>
+        <p class="reveal">OnlyFans doesn't talk about its algorithm publicly. Neither do most creators who've figured it out — because understanding it is a competitive edge they'd rather keep. What follows is built from real account data across multiple creators over multiple years.</p>
 
-        <p>The short version: <strong>OnlyFans rewards engagement and retention far more than subscriber count.</strong> Understanding what that means in practice changes how you approach content, pricing, and subscriber interaction.</p>
+        <p class="reveal">The short version: <strong>OnlyFans rewards engagement and retention far more than subscriber count.</strong> Understanding what that means in practice changes how you approach content, pricing, and subscriber interaction.</p>
 
-        <h2>What the Algorithm Prioritizes</h2>
+        <h2 class="reveal">What the Algorithm Prioritizes</h2>
 
-        <p>OnlyFans surfaces creators in search, recommendations, and discovery features based on a set of engagement signals — not purely follower numbers. An account with 200 highly engaged subscribers will frequently outperform an account with 2,000 disengaged ones in platform visibility metrics.</p>
+        <p class="reveal">OnlyFans surfaces creators in search, recommendations, and discovery features based on a set of engagement signals — not purely follower numbers. An account with 200 highly engaged subscribers will frequently outperform an account with 2,000 disengaged ones in platform visibility metrics.</p>
 
-        <p>The key signals: <strong>message response rate, PPV purchase rate, subscriber retention, content engagement rate, and new subscriber velocity.</strong> Creators who perform well across these metrics get more internal platform exposure. Creators with high subscriber counts but low engagement get progressively less.</p>
+        <p class="reveal">The key signals: <strong>message response rate, PPV purchase rate, subscriber retention, content engagement rate, and new subscriber velocity.</strong> Creators who perform well across these metrics get more internal platform exposure. Creators with high subscriber counts but low engagement get progressively less.</p>
 
-        <div class="hbox">
+        <div class="hbox reveal">
           <strong>The quality vs quantity principle:</strong> 200 subscribers with a 30% PPV purchase rate generate more revenue and more platform visibility than 1,000 subscribers who never buy anything. Build for engagement quality, not just subscriber count.
         </div>
 
-        <h3>The Five Key Signals</h3>
+        <h3 class="reveal">The Five Key Signals</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Message response rate (how quickly and consistently you reply to DMs)</li>
           <li>PPV purchase rate (percentage of subscribers who buy paid content)</li>
           <li>Subscriber retention (month-to-month renewal percentage)</li>
@@ -322,35 +331,35 @@
           <li>New subscriber velocity (growth rate and conversion quality)</li>
         </ul>
 
-        <h2>The Retention Signal is the Most Important One</h2>
+        <h2 class="reveal">The Retention Signal is the Most Important One</h2>
 
-        <p>OnlyFans tracks renewal rates closely. Accounts with high month-to-month retention are algorithmically favored because they demonstrate sustainable value — the platform benefits when subscribers stay, and it surfaces creators who demonstrate they can keep subscribers engaged.</p>
+        <p class="reveal">OnlyFans tracks renewal rates closely. Accounts with high month-to-month retention are algorithmically favored because they demonstrate sustainable value — the platform benefits when subscribers stay, and it surfaces creators who demonstrate they can keep subscribers engaged.</p>
 
-        <p>This is why retention isn't just a revenue metric — it's an algorithm metric. Every subscriber who renews tells the platform that your content is worth staying for. Every subscriber who cancels is a signal in the other direction. Managing retention isn't just about income. It's about long-term platform position.</p>
+        <p class="reveal">This is why retention isn't just a revenue metric — it's an algorithm metric. Every subscriber who renews tells the platform that your content is worth staying for. Every subscriber who cancels is a signal in the other direction. Managing retention isn't just about income. It's about long-term platform position.</p>
 
-        <h2>DM Activity as an Algorithm Input</h2>
+        <h2 class="reveal">DM Activity as an Algorithm Input</h2>
 
-        <p>Active DM conversations signal to the platform that the creator-subscriber relationship is real and ongoing. Accounts with high message reply rates and active conversation threads receive better treatment in platform recommendations than accounts with the same subscriber count but minimal interaction.</p>
+        <p class="reveal">Active DM conversations signal to the platform that the creator-subscriber relationship is real and ongoing. Accounts with high message reply rates and active conversation threads receive better treatment in platform recommendations than accounts with the same subscriber count but minimal interaction.</p>
 
-        <p>This makes DM strategy doubly important: it's not just a revenue channel, it's an algorithm signal. <strong>Every conversation you have isn't just a potential PPV sale — it's also improving your platform visibility.</strong></p>
+        <p class="reveal">This makes DM strategy doubly important: it's not just a revenue channel, it's an algorithm signal. <strong>Every conversation you have isn't just a potential PPV sale — it's also improving your platform visibility.</strong></p>
 
-        <h2>Content Frequency and Consistency Signals</h2>
+        <h2 class="reveal">Content Frequency and Consistency Signals</h2>
 
-        <p>Regular, consistent posting tells the algorithm your account is active and managed. Gaps in posting — even a few days — can reduce distribution temporarily. Long posting gaps cause measurable drops in organic discovery that can take weeks to recover from.</p>
+        <p class="reveal">Regular, consistent posting tells the algorithm your account is active and managed. Gaps in posting — even a few days — can reduce distribution temporarily. Long posting gaps cause measurable drops in organic discovery that can take weeks to recover from.</p>
 
-        <p>The platform also appears to reward content variety within accounts — mixing photos, videos, and interactive posts signals a richer subscriber experience than single-format feeds. This isn't just about keeping subscribers interested; it aligns with how the platform evaluates account quality.</p>
+        <p class="reveal">The platform also appears to reward content variety within accounts — mixing photos, videos, and interactive posts signals a richer subscriber experience than single-format feeds. This isn't just about keeping subscribers interested; it aligns with how the platform evaluates account quality.</p>
 
-        <blockquote>"Once I started tracking engagement rate instead of just subscriber count, everything changed. I focused on retention and DM response — and my discover visibility tripled in two months." — creator in our program, €4.9K/month</blockquote>
+        <blockquote class="reveal">"Once I started tracking engagement rate instead of just subscriber count, everything changed. I focused on retention and DM response — and my discover visibility tripled in two months." — creator in our program, €4.9K/month</blockquote>
 
-        <h2>What Doesn't Help as Much as People Think</h2>
+        <h2 class="reveal">What Doesn't Help as Much as People Think</h2>
 
-        <p>Raw subscriber count has less impact on algorithmic distribution than engagement quality. A massive subscriber count with low engagement and high churn is actually a negative signal in some contexts. The platform is optimizing for creator sustainability — it wants creators who retain and convert, not just creators who acquire.</p>
+        <p class="reveal">Raw subscriber count has less impact on algorithmic distribution than engagement quality. A massive subscriber count with low engagement and high churn is actually a negative signal in some contexts. The platform is optimizing for creator sustainability — it wants creators who retain and convert, not just creators who acquire.</p>
 
-        <p>Purchased subscribers, follow-for-follow schemes, and inflated numbers without real engagement have no algorithmic benefit and can actually trigger quality filters. <strong>Real engagement with real subscribers is the only sustainable signal.</strong></p>
+        <p class="reveal">Purchased subscribers, follow-for-follow schemes, and inflated numbers without real engagement have no algorithmic benefit and can actually trigger quality filters. <strong>Real engagement with real subscribers is the only sustainable signal.</strong></p>
 
-        <h3>What Doesn't Move the Algorithm</h3>
+        <h3 class="reveal">What Doesn't Move the Algorithm</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Subscriber count alone (without engagement to match)</li>
           <li>Purchased or fake followers</li>
           <li>Irregular posting with high volume then silence</li>
@@ -358,12 +367,12 @@
           <li>Ignored DMs and low response rates</li>
         </ul>
 
-        <div class="hbox alt">
+        <div class="hbox alt reveal">
           <strong>The platform rewards what you'd want it to reward.</strong> Genuine engagement, consistent posting, strong retention, active DMs. These aren't just best practices — they're the inputs the algorithm actually measures. Optimize for them and the platform works for you.
         </div>
 
         <!-- CTA BOX -->
-        <div class="cta-box">
+        <div class="cta-box reveal">
           <span class="cta-eyebrow">Work With the Algorithm</span>
           <h3>Build What the Platform <em>Rewards</em></h3>
           <p>The Empire Strategy is designed around the signals that actually matter — retention systems, engagement frameworks, and content strategies aligned with how the platform distributes and rewards creators.</p>
@@ -474,6 +483,7 @@
 <script>
   const scrollBar = document.getElementById('scrollBar');
   const nav = document.getElementById('mainNav');
+
   window.addEventListener('scroll', () => {
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
@@ -483,12 +493,14 @@
 
   const ham = document.getElementById('hamburger');
   const mm = document.getElementById('mobileMenu');
+
   ham.addEventListener('click', () => {
     const isOpen = mm.classList.toggle('open');
     ham.classList.toggle('open', isOpen);
     ham.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     ham.classList.remove('open'); mm.classList.remove('open');
     ham.setAttribute('aria-expanded', 'false');
@@ -498,6 +510,7 @@
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
