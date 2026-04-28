@@ -929,24 +929,34 @@
     });
   });
 
-  document.getElementById("newsletterForm").addEventListener("submit", async (e) => {
+document.getElementById("newsletterForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = e.target.email.value;
+  const form = e.target;
+  const input = form.querySelector('.nl-input');
+  const btn = form.querySelector('.nl-submit');
+  const email = input.value;
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
 
   const res = await fetch("https://project-ke2z2.vercel.app/api/subscribe", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email })
   });
 
   if (res.ok) {
-    alert("You're in.");
-    e.target.reset();
+    btn.textContent = '✔ Subscribed';
+    btn.style.background = 'var(--accent-3)';
+    btn.style.borderColor = 'var(--accent-3)';
+    input.value = '';
+    input.disabled = true;
+    input.placeholder = 'Already subscribed';
   } else {
-    alert("Something went wrong.");
+    btn.textContent = 'Subscribe →';
+    btn.disabled = false;
+    alert("Something went wrong. Try again.");
   }
 });
 </script>
