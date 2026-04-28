@@ -130,25 +130,36 @@
     .post-meta-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
     .post-meta-sep { width: 1px; height: 12px; background: var(--line-strong); }
     .author-strip { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
-    .author-avatar { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .author-avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .author-avatar {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .author-name { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); font-weight: 600; }
-    .author-role { font-size: .58rem; color: var(--soft); margin-top: 2px; }
+    .author-role { font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--soft); margin-top: 2px; }
 
-    /* ── POST CONTENT ── */
-    .post-content { font-size: .9rem; color: var(--muted); }
-    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 44px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin: 28px 0 10px; }
-    .post-content p { margin-bottom: 18px; line-height: 1.85; }
-    .post-content p strong { color: var(--text); font-weight: 600; }
+    /* ── POST CONTENT (MATCH MAIN TEMPLATE) ── */
+    .post-content { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--muted); }
+    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); position: relative; }
+    .post-content h2::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 2px; background: var(--accent); }
+    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 32px 0 12px; }
+    .post-content p { margin-bottom: 22px; line-height: 1.85; }
+    .post-content p strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .post-content ul { list-style: none; margin: 0 0 22px; padding: 0; }
     .post-content ul li { font-size: .88rem; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; line-height: 1.7; }
-    .post-content ul li::before { content: "—"; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .post-content ul li::before { content: "—"; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
     .post-content ul li:last-child { border-bottom: none; }
 
     /* ── HIGHLIGHT BOX ── */
-    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-size: .88rem; line-height: 1.85; color: var(--muted); }
-    .hbox strong { color: var(--text); font-weight: 600; }
+    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: var(--muted); }
+    .hbox strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .hbox.alt { border-left-color: var(--accent-light); background: var(--white); }
 
     /* ── BLOCKQUOTE ── */
@@ -157,11 +168,11 @@
     /* ── INLINE CTA BOX ── */
     .cta-box { background: var(--accent-3); color: var(--white); padding: 44px 40px; margin: 52px 0; text-align: center; position: relative; overflow: hidden; }
     .cta-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-light), transparent); }
-    .cta-eyebrow { font-size: .52rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 14px; }
+    .cta-eyebrow { font-size: .52rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 14px; font-family: 'Montserrat', sans-serif; }
     .cta-box h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--white); margin-bottom: 12px; }
     .cta-box h3 em { color: var(--accent-light); font-style: italic; }
-    .cta-box p { font-size: .85rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-    .cta-btn { display: inline-block; background: var(--white); color: var(--accent-3); padding: 14px 38px; font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; }
+    .cta-box p { font-size: .85rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.8; font-family: 'Montserrat', sans-serif; }
+    .cta-btn { display: inline-block; background: var(--white); color: var(--accent-3); padding: 14px 38px; font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; font-family: 'Montserrat', sans-serif; }
     .cta-btn:hover { background: transparent; color: var(--white); border-color: rgba(255,255,255,.4); }
 
     /* ── POST NAV ── */
@@ -169,8 +180,8 @@
     .post-nav-item { display: flex; flex-direction: column; gap: 6px; padding: 20px; background: var(--white); border: 1px solid var(--line); text-decoration: none; transition: border-color .3s, background .3s; }
     .post-nav-item:hover { border-color: var(--accent); background: var(--bg-2); }
     .post-nav-item.next { text-align: right; }
-    .pn-dir { font-size: .5rem; letter-spacing: 3px; text-transform: uppercase; color: var(--soft); }
-    .pn-title { font-size: .78rem; color: var(--text); font-weight: 500; line-height: 1.4; }
+    .pn-dir { font-size: .5rem; letter-spacing: 3px; text-transform: uppercase; color: var(--soft); font-family: 'Montserrat', sans-serif; }
+    .pn-title { font-size: .78rem; color: var(--text); font-weight: 500; line-height: 1.4; font-family: 'Montserrat', sans-serif; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
@@ -179,23 +190,23 @@
     /* ── SIDEBAR ── */
     .sidebar { position: sticky; top: 88px; height: fit-content; }
     .cta-card { background: var(--accent-3); padding: 30px 24px; margin-bottom: 20px; color: var(--white); }
-    .cta-card-eyebrow { font-size: .5rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 10px; }
+    .cta-card-eyebrow { font-size: .5rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
     .cta-card-title { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.2; }
     .cta-card-title em { color: var(--accent-light); font-style: italic; }
-    .cta-card-sub { font-size: .75rem; color: rgba(255,255,255,.68); line-height: 1.7; margin-bottom: 16px; }
+    .cta-card-sub { font-size: .75rem; color: rgba(255,255,255,.68); line-height: 1.7; margin-bottom: 16px; font-family: 'Montserrat', sans-serif; }
     .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 18px; }
     .stat-item { background: rgba(255,255,255,.08); padding: 12px 10px; text-align: center; }
     .sv { display: block; font-family: 'Bodoni Moda', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
-    .sl { display: block; font-size: .48rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 3px; }
-    .sidebar-btn { display: block; background: var(--white); color: var(--accent-3); padding: 12px; text-align: center; font-size: .55rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; }
+    .sl { display: block; font-size: .48rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 3px; font-family: 'Montserrat', sans-serif; }
+    .sidebar-btn { display: block; background: var(--white); color: var(--accent-3); padding: 12px; text-align: center; font-size: .55rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; font-family: 'Montserrat', sans-serif; }
     .sidebar-btn:hover { background: transparent; color: var(--white); border-color: rgba(255,255,255,.4); }
 
     .sidebar-card { background: var(--white); border: 1px solid var(--line); padding: 24px; margin-bottom: 20px; }
-    .sc-title { display: block; font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+    .sc-title { display: block; font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-family: 'Montserrat', sans-serif; }
     .rel-list { list-style: none; }
     .rel-list li { padding: 8px 0; border-bottom: 1px solid var(--line); }
     .rel-list li:last-child { border-bottom: none; }
-    .rel-list a { font-size: .75rem; color: var(--muted); text-decoration: none; transition: color .3s; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+    .rel-list a { font-size: .75rem; color: var(--muted); text-decoration: none; transition: color .3s; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; font-family: 'Montserrat', sans-serif; }
     .rel-list a::before { content: "—"; color: var(--accent-light); flex-shrink: 0; }
     .rel-list a:hover { color: var(--accent); }
 
@@ -203,16 +214,16 @@
     .site-footer { background: var(--text); color: rgba(255,255,255,.5); margin-top: 80px; }
     .footer-inner { max-width: 1200px; margin: 0 auto; padding: 64px 52px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
     .footer-logo { font-family: 'Bodoni Moda', serif; font-size: 1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--white); text-decoration: none; display: block; margin-bottom: 14px; }
-    .footer-tagline { font-size: .72rem; line-height: 1.8; color: rgba(255,255,255,.4); }
-    .footer-h { font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 16px; font-weight: 600; }
+    .footer-tagline { font-size: .72rem; line-height: 1.8; color: rgba(255,255,255,.4); font-family: 'Montserrat', sans-serif; }
+    .footer-h { font-size: .52rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 16px; font-weight: 600; font-family: 'Montserrat', sans-serif; }
     .footer-links { list-style: none; }
     .footer-links li { padding: 5px 0; }
-    .footer-links a { font-size: .72rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .3s; }
+    .footer-links a { font-size: .72rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .3s; font-family: 'Montserrat', sans-serif; }
     .footer-links a:hover { color: var(--white); }
     .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 52px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-copy { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.25); }
+    .footer-copy { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.25); font-family: 'Montserrat', sans-serif; }
     .footer-socials { display: flex; gap: 24px; }
-    .footer-socials a { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .3s; }
+    .footer-socials a { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .3s; font-family: 'Montserrat', sans-serif; }
     .footer-socials a:hover { color: var(--white); }
 
     /* ── RESPONSIVE ── */
@@ -237,6 +248,15 @@
 
 <div class="scroll-bar" id="scrollBar"></div>
 
+<!-- MOBILE MENU (placed before nav to match your main template) -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="../../index.html#story">Story</a>
+  <a href="../../index.html#method">Method</a>
+  <a href="../../index.html#results">Results</a>
+  <a href="../index.html">Blog</a>
+  <a href="../../index.html#pricing">Get Empire</a>
+</div>
+
 <!-- NAV -->
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
   <a href="../index.html" class="nav-logo">MYONLYPROFIT</a>
@@ -251,15 +271,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <a href="../../index.html#story">Story</a>
-  <a href="../../index.html#method">Method</a>
-  <a href="../../index.html#results">Results</a>
-  <a href="../index.html">Blog</a>
-  <a href="../../index.html#pricing">Get Empire</a>
-</div>
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -276,7 +287,7 @@
     <article itemscope itemtype="https://schema.org/Article">
 
       <!-- HERO -->
-      <header class="post-hero">
+      <header class="post-hero reveal">
         <span class="post-eyebrow">Conversion Psychology</span>
         <h1 class="post-title" itemprop="headline">The Psychology of<br/><em>Why Fans Pay</em><br/>(And How to Use It)</h1>
         <div class="post-meta-row" itemprop="datePublished" content="2026-04-01">
@@ -287,7 +298,9 @@
           <span>Advanced Strategy</span>
         </div>
         <div class="author-strip" itemprop="author" itemscope itemtype="https://schema.org/Organization">
-          <div class="author-avatar"><img src="../../images/logo-blog.png" alt="MYONLYPROFIT"></div>
+          <div class="author-avatar">
+            <img src="../../images/logo-blog.png" alt="MYONLYPROFIT Logo">
+          </div>
           <div>
             <div class="author-name" itemprop="name">MYONLYPROFIT</div>
             <div class="author-role">Creator Strategy Team</div>
@@ -298,62 +311,62 @@
       <!-- CONTENT -->
       <div class="post-content" itemprop="articleBody">
 
-        <p>Nobody pays for content. That sounds wrong, but it's one of the most important things you can understand about how OnlyFans actually works. What subscribers are actually paying for is something invisible, psychological, and deeply human — and when you understand it, your conversion and retention numbers change permanently.</p>
+        <p class="reveal">Nobody pays for content. That sounds wrong, but it's one of the most important things you can understand about how OnlyFans actually works. What subscribers are actually paying for is something invisible, psychological, and deeply human — and when you understand it, your conversion and retention numbers change permanently.</p>
 
-        <h2>What People Are Really Buying</h2>
+        <h2 class="reveal">What People Are Really Buying</h2>
 
-        <p>Subscribers are paying for <strong>attention, access, connection, and fantasy.</strong> The content is just the vehicle for delivering those things. A photo on its own has no inherent value. A photo that makes someone feel specifically seen, desired, or included in something exclusive — that has enormous value.</p>
+        <p class="reveal">Subscribers are paying for <strong>attention, access, connection, and fantasy.</strong> The content is just the vehicle for delivering those things. A photo on its own has no inherent value. A photo that makes someone feel specifically seen, desired, or included in something exclusive — that has enormous value.</p>
 
-        <p>This distinction sounds abstract until you apply it: two creators can post the same type of content. One earns €500/month. One earns €5,000. The difference is almost never the content itself. It's how the experience surrounding it makes people feel.</p>
+        <p class="reveal">This distinction sounds abstract until you apply it: two creators can post the same type of content. One earns €500/month. One earns €5,000. The difference is almost never the content itself. It's how the experience surrounding it makes people feel.</p>
 
-        <div class="hbox">
+        <div class="hbox reveal">
           <strong>The four purchase drivers (in order of power):</strong> Feeling of exclusive access → Sense of personal attention → Emotional connection to the persona → Fantasy and desire. Most creators only activate the last one. The top earners activate all four simultaneously.
         </div>
 
-        <h2>Curiosity as a Conversion Engine</h2>
+        <h2 class="reveal">Curiosity as a Conversion Engine</h2>
 
-        <p>The brain is wired to resolve incomplete information. When something is suggested but not fully shown — when a caption implies more than the image delivers — the viewer experiences psychological tension. The only way to resolve that tension is to take action.</p>
+        <p class="reveal">The brain is wired to resolve incomplete information. When something is suggested but not fully shown — when a caption implies more than the image delivers — the viewer experiences psychological tension. The only way to resolve that tension is to take action.</p>
 
-        <p>This is why content that reveals everything doesn't convert as well as content that withholds strategically. <strong>The gap between what is seen and what is possible is where buying decisions live.</strong> Filling that gap completely removes the desire to pay. Leaving it just open enough makes paying feel inevitable.</p>
+        <p class="reveal">This is why content that reveals everything doesn't convert as well as content that withholds strategically. <strong>The gap between what is seen and what is possible is where buying decisions live.</strong> Filling that gap completely removes the desire to pay. Leaving it just open enough makes paying feel inevitable.</p>
 
-        <h3>How to Apply This</h3>
+        <h3 class="reveal">How to Apply This</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Use teasers that suggest without showing everything</li>
           <li>Write captions that create curiosity: "Wait until you see what happened next…"</li>
           <li>Preview exclusive content in public posts with strategic cropping</li>
           <li>Create anticipation through sequenced releases</li>
         </ul>
 
-        <h2>Exclusivity is Not About Scarcity</h2>
+        <h2 class="reveal">Exclusivity is Not About Scarcity</h2>
 
-        <p>When something feels exclusive, its perceived value rises — regardless of whether it's actually rare. The framing matters more than the reality. "Just for you" in a DM converts better than the same message broadcast to everyone, even if the content is identical. The feeling of being individually selected drives behavior that generalized appeals don't.</p>
+        <p class="reveal">When something feels exclusive, its perceived value rises — regardless of whether it's actually rare. The framing matters more than the reality. "Just for you" in a DM converts better than the same message broadcast to everyone, even if the content is identical. The feeling of being individually selected drives behavior that generalized appeals don't.</p>
 
-        <p>This scales into pricing, content access, and DM strategy. When subscribers feel they're in a specific inner circle — not just one of thousands — they spend more, stay longer, and engage more deeply. That feeling is created deliberately through the way you communicate, not through actually limiting access.</p>
+        <p class="reveal">This scales into pricing, content access, and DM strategy. When subscribers feel they're in a specific inner circle — not just one of thousands — they spend more, stay longer, and engage more deeply. That feeling is created deliberately through the way you communicate, not through actually limiting access.</p>
 
-        <h2>The Parasocial Investment Mechanism</h2>
+        <h2 class="reveal">The Parasocial Investment Mechanism</h2>
 
-        <p>Humans form emotional attachments to people they've never met. This isn't unusual or pathological — it's how media, entertainment, and celebrity have always worked. On OnlyFans, this mechanism is amplified because the interaction feels reciprocal. Subscribers aren't just watching — they're responding, and getting responses back.</p>
+        <p class="reveal">Humans form emotional attachments to people they've never met. This isn't unusual or pathological — it's how media, entertainment, and celebrity have always worked. On OnlyFans, this mechanism is amplified because the interaction feels reciprocal. Subscribers aren't just watching — they're responding, and getting responses back.</p>
 
-        <p>Every reply, every personalized DM, every moment where a subscriber feels genuinely acknowledged — these deposits into an emotional account that eventually converts into spending. The creators who understand this treat <strong>every interaction as an investment in the relationship, not just a transaction.</strong></p>
+        <p class="reveal">Every reply, every personalized DM, every moment where a subscriber feels genuinely acknowledged — these deposits into an emotional account that eventually converts into spending. The creators who understand this treat <strong>every interaction as an investment in the relationship, not just a transaction.</strong></p>
 
-        <h2>Loss Aversion Converts Faster Than Gain Framing</h2>
+        <h2 class="reveal">Loss Aversion Converts Faster Than Gain Framing</h2>
 
-        <p>Behavioral psychology has known for decades that people respond more powerfully to potential losses than equivalent potential gains. "This expires in 24 hours" converts faster than "great deal available now." "Only 3 spots left" converts faster than "plenty available." Scarcity and urgency aren't manipulation — they're the activation of a decision-making mechanism that already exists in every subscriber.</p>
+        <p class="reveal">Behavioral psychology has known for decades that people respond more powerfully to potential losses than equivalent potential gains. "This expires in 24 hours" converts faster than "great deal available now." "Only 3 spots left" converts faster than "plenty available." Scarcity and urgency aren't manipulation — they're the activation of a decision-making mechanism that already exists in every subscriber.</p>
 
-        <p>Used honestly and selectively, these triggers dramatically increase conversion speed. Overused, they lose credibility and erode trust. The key is strategic deployment — when you have a genuine time limit or real scarcity, say so clearly. When you don't, don't fake it.</p>
+        <p class="reveal">Used honestly and selectively, these triggers dramatically increase conversion speed. Overused, they lose credibility and erode trust. The key is strategic deployment — when you have a genuine time limit or real scarcity, say so clearly. When you don't, don't fake it.</p>
 
-        <blockquote>"Once I understood that fans aren't paying for photos — they're paying for how my page makes them feel — everything changed. Content got easier. Conversions got higher. Retention actually became something I could influence." — creator in our program, €6.8K/month</blockquote>
+        <blockquote class="reveal">"Once I understood that fans aren't paying for photos — they're paying for how my page makes them feel — everything changed. Content got easier. Conversions got higher. Retention actually became something I could influence." — creator in our program, €6.8K/month</blockquote>
 
-        <h2>Why Some Creators Get Tips and Others Don't</h2>
+        <h2 class="reveal">Why Some Creators Get Tips and Others Don't</h2>
 
-        <p>Tips are the purest expression of emotional loyalty. They happen when a subscriber feels so positively connected to the experience that they want to go beyond the transaction. You can't demand tips. You can't engineer them mechanically. But you can create the conditions that make them a natural expression of how subscribers feel.</p>
+        <p class="reveal">Tips are the purest expression of emotional loyalty. They happen when a subscriber feels so positively connected to the experience that they want to go beyond the transaction. You can't demand tips. You can't engineer them mechanically. But you can create the conditions that make them a natural expression of how subscribers feel.</p>
 
-        <p>Those conditions are: consistent presence, personalized interaction, genuine-feeling responses, and an experience that feels specific rather than generic. None of these are about content type or physical appearance. <strong>They're entirely about how the relationship is managed.</strong></p>
+        <p class="reveal">Those conditions are: consistent presence, personalized interaction, genuine-feeling responses, and an experience that feels specific rather than generic. None of these are about content type or physical appearance. <strong>They're entirely about how the relationship is managed.</strong></p>
 
-        <h3>Creating the Conditions for Tips</h3>
+        <h3 class="reveal">Creating the Conditions for Tips</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Respond personally to messages (even brief responses build connection)</li>
           <li>Remember details subscribers share and reference them later</li>
           <li>Acknowledge long-term subscribers publicly or privately</li>
@@ -361,12 +374,12 @@
           <li>Make the experience feel collaborative, not transactional</li>
         </ul>
 
-        <div class="hbox alt">
+        <div class="hbox alt reveal">
           <strong>The platform sells content. You sell a feeling.</strong> The creators who earn the most are the ones who've stopped thinking about what they're posting and started thinking about what their subscribers experience. That shift changes everything downstream — retention, PPV conversions, tips, and long-term revenue.
         </div>
 
         <!-- CTA BOX -->
-        <div class="cta-box">
+        <div class="cta-box reveal">
           <span class="cta-eyebrow">Understanding Converts. Systems Scale It.</span>
           <h3>The <em>Psychology</em> Behind the System</h3>
           <p>The Empire Strategy translates these psychological principles into concrete systems — DM frameworks, content structures, and retention strategies built around what actually drives subscriber behavior.</p>
@@ -477,6 +490,7 @@
 <script>
   const scrollBar = document.getElementById('scrollBar');
   const nav = document.getElementById('mainNav');
+
   window.addEventListener('scroll', () => {
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
@@ -486,14 +500,17 @@
 
   const ham = document.getElementById('hamburger');
   const mm = document.getElementById('mobileMenu');
+
   ham.addEventListener('click', () => {
     const isOpen = mm.classList.toggle('open');
     ham.classList.toggle('open', isOpen);
     ham.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    ham.classList.remove('open'); mm.classList.remove('open');
+    ham.classList.remove('open');
+    mm.classList.remove('open');
     ham.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }));
@@ -501,6 +518,7 @@
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
