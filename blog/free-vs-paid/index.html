@@ -130,41 +130,52 @@
     .post-meta-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
     .post-meta-sep { width: 1px; height: 12px; background: var(--line-strong); }
     .author-strip { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--accent); }
-    .author-avatar { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .author-avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .author-avatar {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .author-name { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); font-weight: 600; }
-    .author-role { font-size: .58rem; color: var(--soft); margin-top: 2px; }
+    .author-role { font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--soft); margin-top: 2px; }
 
-    /* ── POST CONTENT ── */
-    .post-content { font-size: .9rem; color: var(--muted); }
-    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 44px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin: 28px 0 10px; }
-    .post-content p { margin-bottom: 18px; line-height: 1.85; }
-    .post-content p strong { color: var(--text); font-weight: 600; }
+    /* ── POST CONTENT (MATCH FIRST PAGE) ── */
+    .post-content { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--muted); }
+    .post-content h2 { font-family: 'Bodoni Moda', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); position: relative; }
+    .post-content h2::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 2px; background: var(--accent); }
+    .post-content h3 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 32px 0 12px; }
+    .post-content p { margin-bottom: 22px; line-height: 1.85; }
+    .post-content p strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .post-content ul { list-style: none; margin: 0 0 22px; padding: 0; }
     .post-content ul li { font-size: .88rem; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; line-height: 1.7; }
-    .post-content ul li::before { content: "—"; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .post-content ul li::before { content: "—"; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
     .post-content ul li:last-child { border-bottom: none; }
 
     /* ── HIGHLIGHT BOX ── */
-    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-size: .88rem; line-height: 1.85; color: var(--muted); }
-    .hbox strong { color: var(--text); font-weight: 600; }
+    .hbox { background: var(--bg-2); border-left: 3px solid var(--accent); padding: 22px 26px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.85; color: var(--muted); }
+    .hbox strong { color: var(--text); font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; }
     .hbox.alt { border-left-color: var(--accent-light); background: var(--white); }
 
     /* ── BLOCKQUOTE ── */
     blockquote { border-left: 3px solid var(--accent-light); padding: 16px 24px; margin: 28px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--muted); background: var(--white); line-height: 1.7; }
 
-    /* ── COMPARISON GRID ── */
+    /* ── COMPARISON GRID (KEEP) ── */
     .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 32px 0; }
     @media(max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
     .cg-col { background: var(--white); border: 1px solid var(--line); padding: 28px; }
     .cg-col.free { border-top: 3px solid var(--accent-light); }
     .cg-col.paid { border-top: 3px solid var(--accent); }
-    .cg-title { font-size: .56rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-weight: 700; }
+    .cg-title { font-size: .56rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-weight: 700; font-family: 'Montserrat', sans-serif; }
     .cg-col.free .cg-title { color: var(--accent-light); }
     .cg-col.paid .cg-title { color: var(--accent); }
     .cg-list { list-style: none; padding: 0; margin: 0; }
-    .cg-list li { padding: 8px 0; font-size: .82rem; color: var(--muted); border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: flex-start; line-height: 1.6; }
+    .cg-list li { padding: 8px 0; font-size: .88rem; color: var(--muted); border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: flex-start; line-height: 1.6; }
     .cg-list li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
     .cg-list li:last-child { border-bottom: none; }
 
@@ -174,8 +185,8 @@
     .cta-eyebrow { font-size: .52rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-light); display: block; margin-bottom: 14px; }
     .cta-box h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--white); margin-bottom: 12px; }
     .cta-box h3 em { color: var(--accent-light); font-style: italic; }
-    .cta-box p { font-size: .85rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-    .cta-btn { display: inline-block; background: var(--white); color: var(--accent-3); padding: 14px 38px; font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; }
+    .cta-box p { font-size: .85rem; color: rgba(255,255,255,.72); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.8; font-family: 'Montserrat', sans-serif; }
+    .cta-btn { display: inline-block; background: var(--white); color: var(--accent-3); padding: 14px 38px; font-size: .65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all .3s; border: 1px solid transparent; font-family: 'Montserrat', sans-serif; }
     .cta-btn:hover { background: transparent; color: var(--white); border-color: rgba(255,255,255,.4); }
 
     /* ── POST NAV ── */
@@ -251,6 +262,15 @@
 
 <div class="scroll-bar" id="scrollBar"></div>
 
+<!-- MOBILE MENU (same placement as first page) -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="../../index.html#story">Story</a>
+  <a href="../../index.html#method">Method</a>
+  <a href="../../index.html#results">Results</a>
+  <a href="../index.html">Blog</a>
+  <a href="../../index.html#pricing">Get Empire</a>
+</div>
+
 <!-- NAV -->
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
   <a href="../index.html" class="nav-logo">MYONLYPROFIT</a>
@@ -265,15 +285,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <a href="../../index.html#story">Story</a>
-  <a href="../../index.html#method">Method</a>
-  <a href="../../index.html#results">Results</a>
-  <a href="../index.html">Blog</a>
-  <a href="../../index.html#pricing">Get Empire</a>
-</div>
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -290,7 +301,7 @@
     <article itemscope itemtype="https://schema.org/Article">
 
       <!-- HERO -->
-      <header class="post-hero">
+      <header class="post-hero reveal">
         <span class="post-eyebrow">Monetization Model</span>
         <h1 class="post-title" itemprop="headline">Free vs Paid OnlyFans:<br/><em>Which Model</em> Makes More Money</h1>
         <div class="post-meta-row" itemprop="datePublished" content="2026-04-01">
@@ -301,7 +312,9 @@
           <span>Business Model</span>
         </div>
         <div class="author-strip" itemprop="author" itemscope itemtype="https://schema.org/Organization">
-          <div class="author-avatar"><img src="../../images/logo-blog.png" alt="MYONLYPROFIT"></div>
+          <div class="author-avatar">
+            <img src="../../images/logo-blog.png" alt="MYONLYPROFIT Logo">
+          </div>
           <div>
             <div class="author-name" itemprop="name">MYONLYPROFIT</div>
             <div class="author-role">Creator Strategy Team</div>
@@ -312,36 +325,36 @@
       <!-- CONTENT -->
       <div class="post-content" itemprop="articleBody">
 
-        <p>One of the first decisions every creator faces: free page or paid subscription? Both models work. Both have created serious income for real creators. The question is which model fits your traffic situation, your content strategy, and your monetization system — and which one you can execute correctly.</p>
+        <p class="reveal">One of the first decisions every creator faces: free page or paid subscription? Both models work. Both have created serious income for real creators. The question is which model fits your traffic situation, your content strategy, and your monetization system — and which one you can execute correctly.</p>
 
-        <h2>The Free Page Model</h2>
+        <h2 class="reveal">The Free Page Model</h2>
 
-        <p>A free page removes the subscription barrier entirely. Anyone can follow without paying. The trade-off: <strong>there's no passive subscription income.</strong> Every dollar you earn on a free page comes from active monetization — PPV content, DM offers, tips, and custom requests.</p>
+        <p class="reveal">A free page removes the subscription barrier entirely. Anyone can follow without paying. The trade-off: <strong>there's no passive subscription income.</strong> Every dollar you earn on a free page comes from active monetization — PPV content, DM offers, tips, and custom requests.</p>
 
-        <p>Free pages work as funnels. They're exceptionally powerful for warming cold traffic: someone finds you on TikTok, follows your free page, gets exposed to your content and personality, then becomes a PPV buyer through DMs. The lack of an upfront subscription fee means more people enter the system — which gives you more people to monetize through the channels inside.</p>
+        <p class="reveal">Free pages work as funnels. They're exceptionally powerful for warming cold traffic: someone finds you on TikTok, follows your free page, gets exposed to your content and personality, then becomes a PPV buyer through DMs. The lack of an upfront subscription fee means more people enter the system — which gives you more people to monetize through the channels inside.</p>
 
-        <div class="hbox">
+        <div class="hbox reveal">
           <strong>Free page without a monetization system = free content.</strong> A free page with strong PPV, DM conversion, and upsell systems can outperform a paid page with weak internal monetization. The model isn't the revenue driver — the systems inside it are.
         </div>
 
-        <h3>Best For</h3>
+        <h3 class="reveal">Best For</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Creators with high traffic volume but low brand recognition</li>
           <li>Strong DM conversion and PPV selling skills</li>
           <li>Content that creates curiosity and drives PPV interest</li>
           <li>Creators comfortable with active daily monetization</li>
         </ul>
 
-        <h2>The Paid Page Model</h2>
+        <h2 class="reveal">The Paid Page Model</h2>
 
-        <p>A paid subscription creates immediate, predictable recurring revenue. Every subscriber generates monthly income before they've engaged with a single piece of content. This baseline is what makes scaling feel stable — as subscriber count grows, the income floor rises with it.</p>
+        <p class="reveal">A paid subscription creates immediate, predictable recurring revenue. Every subscriber generates monthly income before they've engaged with a single piece of content. This baseline is what makes scaling feel stable — as subscriber count grows, the income floor rises with it.</p>
 
-        <p>The risk: subscription friction reduces conversion. Visitors who might follow a free page and eventually become buyers will skip a paid page entirely if the entry barrier feels too high. This is why <strong>subscription pricing strategy</strong> matters enormously on paid pages. The goal is to minimize friction at entry, not maximize per-subscriber revenue upfront.</p>
+        <p class="reveal">The risk: subscription friction reduces conversion. Visitors who might follow a free page and eventually become buyers will skip a paid page entirely if the entry barrier feels too high. This is why <strong>subscription pricing strategy</strong> matters enormously on paid pages. The goal is to minimize friction at entry, not maximize per-subscriber revenue upfront.</p>
 
-        <h3>Best For</h3>
+        <h3 class="reveal">Best For</h3>
 
-        <ul>
+        <ul class="reveal">
           <li>Creators with established brand or niche authority</li>
           <li>Preference for passive recurring revenue</li>
           <li>Content quality that justifies an upfront subscription</li>
@@ -349,7 +362,7 @@
         </ul>
 
         <!-- COMPARISON GRID -->
-        <div class="compare-grid" role="table" aria-label="Free vs Paid comparison">
+        <div class="compare-grid reveal" role="table" aria-label="Free vs Paid comparison">
           <div class="cg-col free" role="rowgroup">
             <div class="cg-title">Free Page Advantages</div>
             <ul class="cg-list">
@@ -372,26 +385,26 @@
           </div>
         </div>
 
-        <h2>The Hybrid Model (What Actually Works Best)</h2>
+        <h2 class="reveal">The Hybrid Model (What Actually Works Best)</h2>
 
-        <p>Most creators who earn serious, consistent income run a hybrid: a free page acts as the traffic funnel and warm-up layer, routing engaged followers toward a paid page. The free page does the qualifying work. The paid page does the compounding revenue work.</p>
+        <p class="reveal">Most creators who earn serious, consistent income run a hybrid: a free page acts as the traffic funnel and warm-up layer, routing engaged followers toward a paid page. The free page does the qualifying work. The paid page does the compounding revenue work.</p>
 
-        <p>This structure captures the advantages of both models: free page reach and funnel capability, combined with paid page recurring revenue and internal monetization depth. The setup requires more initial work — two accounts, two content streams, a clear funnel between them — but the income architecture is significantly more robust.</p>
+        <p class="reveal">This structure captures the advantages of both models: free page reach and funnel capability, combined with paid page recurring revenue and internal monetization depth. The setup requires more initial work — two accounts, two content streams, a clear funnel between them — but the income architecture is significantly more robust.</p>
 
-        <blockquote>"I ran free-only for 3 months and made €1.8K average. Added a paid tier as an upsell and hit €5.2K the next month. Same traffic, better funnel." — creator in our program</blockquote>
+        <blockquote class="reveal">"I ran free-only for 3 months and made €1.8K average. Added a paid tier as an upsell and hit €5.2K the next month. Same traffic, better funnel." — creator in our program</blockquote>
 
-        <h2>Which Model to Start With</h2>
+        <h2 class="reveal">Which Model to Start With</h2>
 
-        <p>New creators with limited traffic and no established audience typically benefit from starting with a paid page at a low, accessible price point. This creates immediate revenue potential without requiring the volume that makes a free page profitable. As traffic systems develop, a free funnel page can be added.</p>
+        <p class="reveal">New creators with limited traffic and no established audience typically benefit from starting with a paid page at a low, accessible price point. This creates immediate revenue potential without requiring the volume that makes a free page profitable. As traffic systems develop, a free funnel page can be added.</p>
 
-        <p>Creators with existing traffic — a TikTok audience, a Reddit presence, an Instagram following — can often move directly to a hybrid model and see faster results because the free page has something to funnel immediately.</p>
+        <p class="reveal">Creators with existing traffic — a TikTok audience, a Reddit presence, an Instagram following — can often move directly to a hybrid model and see faster results because the free page has something to funnel immediately.</p>
 
-        <div class="hbox alt">
+        <div class="hbox alt reveal">
           <strong>The model doesn't determine the income. The system does.</strong> A paid page with weak internal monetization earns less than a free page with strong DM conversion. The model is the structure. The systems inside it are what generate income.
         </div>
 
         <!-- CTA BOX -->
-        <div class="cta-box">
+        <div class="cta-box reveal">
           <span class="cta-eyebrow">Model + System = Income</span>
           <h3>The Revenue <em>Architecture</em> That Works</h3>
           <p>The Empire Strategy covers both models, the hybrid setup, pricing strategy, and the internal monetization systems that make either model actually generate consistent income.</p>
@@ -502,6 +515,7 @@
 <script>
   const scrollBar = document.getElementById('scrollBar');
   const nav = document.getElementById('mainNav');
+
   window.addEventListener('scroll', () => {
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
@@ -511,12 +525,14 @@
 
   const ham = document.getElementById('hamburger');
   const mm = document.getElementById('mobileMenu');
+
   ham.addEventListener('click', () => {
     const isOpen = mm.classList.toggle('open');
     ham.classList.toggle('open', isOpen);
     ham.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     ham.classList.remove('open'); mm.classList.remove('open');
     ham.setAttribute('aria-expanded', 'false');
@@ -526,6 +542,7 @@
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
