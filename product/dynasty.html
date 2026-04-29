@@ -70,6 +70,7 @@
     .delivery-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,184,198,.2)); }
     .delivery-line.r { background: linear-gradient(90deg, rgba(155,184,198,.2), transparent); }
     .delivery-text { font-family: 'Montserrat', sans-serif; font-size: .48rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+    @media(max-width:480px) { .delivery-text { white-space: normal; text-align: center; font-size: .42rem; letter-spacing: 2px; } .delivery-label { flex-wrap: wrap; justify-content: center; } .delivery-line, .delivery-line.r { display: none; } }
     .hero-get-btn {
       width: 100%; padding: 20px 40px;
       background: #fff; border: 1px solid #fff;
