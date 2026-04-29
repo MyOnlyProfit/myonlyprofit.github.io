@@ -17,7 +17,6 @@
       --line-strong: rgba(255,255,255,0.14);
       --accent: #9bb8c6;
       --accent-3: #dbe7ed;
-      --shadow: 0 30px 90px rgba(0,0,0,.65);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) #000; }
@@ -25,15 +24,12 @@
     ::-webkit-scrollbar-track { background: #000; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), #fff, var(--accent)); border-radius: 12px; }
     ::selection { background: rgba(155,184,198,.28); color: #fff; }
-
     body {
       font-family: 'Montserrat', sans-serif;
       background: #000;
       color: var(--text);
       overflow-x: hidden;
     }
-
-    /* subtle grid lines */
     body::before {
       content: "";
       position: fixed;
@@ -50,8 +46,6 @@
         transparent 75.1%
       );
     }
-
-    /* NAV */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -83,14 +77,11 @@
       transition: color .3s ease;
     }
     .nav-back:hover { color: var(--accent-3); }
-
-    /* PAGE */
     .wrap {
       max-width: 820px;
       margin: 0 auto;
       padding: 130px 40px 100px;
     }
-
     .page-eyebrow {
       font-size: .62rem;
       letter-spacing: 6px;
@@ -99,7 +90,6 @@
       margin-bottom: 14px;
       display: block;
     }
-
     h1 {
       font-family: 'Bodoni Moda', serif;
       font-size: 3.4rem;
@@ -109,7 +99,6 @@
       margin-bottom: 10px;
     }
     h1 .accent { color: var(--accent-3); font-style: italic; }
-
     .meta {
       font-size: .72rem;
       letter-spacing: 2px;
@@ -118,8 +107,6 @@
       padding-bottom: 28px;
       border-bottom: 1px solid var(--line);
     }
-
-    /* SECTION HEADINGS */
     h2 {
       font-family: 'Bodoni Moda', serif;
       font-size: 1.1rem;
@@ -148,7 +135,6 @@
       color: rgba(255,255,255,.3);
       margin-right: 4px;
     }
-
     p {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
@@ -156,7 +142,6 @@
       color: var(--muted);
       margin-bottom: 16px;
     }
-
     ul {
       list-style: none;
       padding: 0;
@@ -180,8 +165,6 @@
       color: var(--accent);
     }
     ul li strong { color: var(--text); }
-
-    /* HIGHLIGHT BOX */
     .callout {
       background: linear-gradient(135deg, #080808 0%, #0c0c0c 100%);
       border: 1px solid rgba(255,255,255,.08);
@@ -199,13 +182,8 @@
       background: linear-gradient(90deg, var(--accent-3), transparent);
       opacity: .4;
     }
-    .callout p {
-      margin-bottom: 0;
-      color: #d5d5cf;
-    }
+    .callout p { margin-bottom: 0; color: #d5d5cf; }
     .callout strong { color: var(--accent-3); }
-
-    /* CONTACT BOX */
     .contact-box {
       background: linear-gradient(135deg, #070707 0%, #0b0b0b 100%);
       border: 1px solid var(--line-strong);
@@ -240,8 +218,6 @@
       transition: color .3s ease;
     }
     .contact-box a:hover { color: #fff; }
-
-    /* FOOTER */
     .footer {
       padding: 52px 50px 32px;
       border-top: 1px solid var(--line);
@@ -265,10 +241,7 @@
       text-transform: uppercase;
     }
     .footer-logo span { color: var(--accent-3); }
-    .footer-links-row {
-      display: flex;
-      gap: 28px;
-    }
+    .footer-links-row { display: flex; gap: 28px; }
     .footer-links-row a {
       color: var(--soft);
       text-decoration: none;
@@ -283,9 +256,7 @@
       letter-spacing: 2px;
       color: rgba(255,255,255,.22);
     }
-
     strong { color: var(--text); }
-
     @media (max-width: 768px) {
       .nav { padding: 18px 20px; }
       .wrap { padding: 110px 20px 80px; }
@@ -307,70 +278,100 @@
   <h1>Terms of <span class="accent">Service</span></h1>
   <p class="meta">Last updated: April 2026 &nbsp;·&nbsp; Effective immediately upon purchase</p>
 
-  <h2><span class="num">01</span> Agreement</h2>
-  <p>By purchasing any product from MYONLYPROFIT ("we", "us", "our") — accessible at myonlyprofit.com — you ("the customer", "you") agree to be bound by these Terms of Service in full. If you do not agree, do not complete your purchase.</p>
+  <h2><span class="num">01</span> Agreement to These Terms</h2>
+  <p>By accessing, browsing, or purchasing from MYONLYPROFIT ("we", "us", "our"), accessible at myonlyprofit.com, you ("the customer", "you", "your") agree to be legally bound by these Terms of Service in their entirety. If you do not agree with any part of these Terms, you must not complete a purchase or use our materials.</p>
+  <p>These Terms constitute the entire agreement between you and MYONLYPROFIT regarding your purchase and use of our digital products. By ticking the acceptance checkbox at checkout, you confirm you have read, understood, and agreed to these Terms.</p>
 
-  <h2><span class="num">02</span> Products</h2>
-  <p>MYONLYPROFIT sells digital strategy guides, frameworks, and educational materials relating to content creator monetisation. Our current product suite includes:</p>
+  <h2><span class="num">02</span> Our Products</h2>
+  <p>MYONLYPROFIT creates and sells digital educational materials relating to content creator strategy and monetisation. Our current product suite includes:</p>
   <ul>
-    <li><strong>Dynasty</strong> — A digital quick-start strategy guide delivered as a password-protected HTML file, designed to open instantly in any browser (including Microsoft Edge). Delivered automatically by email upon purchase.</li>
-    <li><strong>Kingdom</strong> — A comprehensive self-guided digital strategy system delivered as a password-protected web document, covering traffic, content, DM conversion, and revenue growth.</li>
-    <li><strong>Empire™</strong> — The Kingdom system plus a personalised done-with-you consulting engagement with daily 1-on-1 support.</li>
+    <li><strong>Dynasty</strong> — A digital quick-start strategy guide delivered as an HTML file that opens directly in any browser (including Microsoft Edge). Delivered automatically to your email upon confirmed payment.</li>
+    <li><strong>Empire</strong> — A comprehensive self-guided digital strategy system. A password is delivered by email upon purchase, granting access to the materials hosted on our website. The Empire materials are hosted on our platform and updated in real time where necessary — this includes bug fixes, formatting improvements, and the addition of new valuable content. We will never remove content that was available at the time of purchase.</li>
+    <li><strong>Empire DX™</strong> — The Empire system combined with a personalised done-with-you consulting engagement including daily 1-on-1 support. A direct Stripe payment link will be sent by email after mutual agreement with the customer.</li>
   </ul>
-  <p>All products are delivered digitally. Upon confirmed payment via Stripe, you will automatically receive an email containing a password that grants access to your purchased materials on our website.</p>
+  <p>All products are digital. No physical goods are delivered at any time.</p>
 
-  <h2><span class="num">03</span> No Refund Policy</h2>
-  <div class="callout">
-    <p><strong>All sales are final. We do not offer refunds under any circumstances.</strong><br><br>
-    Because our products are digital and access is granted immediately upon purchase (via automated password and/or email delivery), the full content is made available at the moment of payment. By completing your purchase, you acknowledge and accept that no refund will be issued — regardless of whether the materials have been accessed, downloaded, or used.</p>
-  </div>
-  <p>This policy complies with EU consumer rights law under Article 16(m) of Directive 2011/83/EU, which exempts digital content from the right of withdrawal once delivery has begun with the consumer's prior express consent — which you provide by completing the checkout.</p>
-
-  <h2><span class="num">04</span> Delivery</h2>
-  <p>After successful payment through Stripe:</p>
+  <h2><span class="num">03</span> Delivery of Digital Products</h2>
+  <p>Upon confirmed payment via Stripe, the following delivery process applies:</p>
   <ul>
-    <li>An automated email is sent to the address you provide at checkout</li>
-    <li>This email contains a password to access your purchased content on myonlyprofit.com</li>
-    <li>Dynasty purchasers receive an HTML file that opens directly in any browser — no additional software required</li>
+    <li>An automated email is sent to the address provided at checkout containing either a password or a downloadable file</li>
     <li>Delivery is typically instant but may take up to 15 minutes</li>
-    <li>Check your spam / junk folder if you do not receive the email</li>
-    <li>If you have not received your access within 1 hour, contact us at system@myonlyprofit.com</li>
+    <li>Please check your spam or junk folder if the email does not appear in your inbox</li>
+    <li>Dynasty purchasers receive an HTML file that opens directly in any browser — no additional software is required</li>
+    <li>Empire purchasers receive a password granting access to materials hosted at myonlyprofit.com</li>
   </ul>
+  <p>If you have not received your access within 1 hour of confirmed payment, contact us at <strong>system@myonlyprofit.com</strong> and we will do our best to deliver your materials manually by email as soon as possible.</p>
 
-  <h2><span class="num">05</span> Intellectual Property</h2>
-  <p>All content within our products — including text, strategies, systems, frameworks, diagrams, and structure — is the exclusive intellectual property of MYONLYPROFIT and is protected by copyright law.</p>
+  <h2><span class="num">04</span> No Refund Policy</h2>
+  <div class="callout">
+    <p><strong>All sales are final. We do not offer refunds under any circumstances.</strong><br/><br/>
+    Our products are digital in nature and access is granted immediately upon purchase. Because the full content becomes available at the moment payment is confirmed — via automated password delivery and/or direct file delivery — the product is considered fully delivered upon purchase. By completing your purchase, you expressly acknowledge and accept that no refund will be issued, regardless of whether the materials have been accessed, opened, downloaded, or used.</p>
+  </div>
+  <p>This policy is consistent with EU consumer rights law. Under Article 16(m) of Directive 2011/83/EU, digital content is exempt from the right of withdrawal once delivery has begun with the consumer's prior express consent. By completing the checkout process and ticking the acceptance checkbox, you provide that express consent.</p>
+
+  <h2><span class="num">05</span> Licence & Permitted Use</h2>
+  <p>Upon purchase, you are granted a limited, non-exclusive, non-transferable licence to access and use the purchased materials for your own personal, non-commercial purposes only.</p>
   <ul>
-    <li>You may not copy, reproduce, share, resell, or distribute any part of our materials</li>
-    <li>You may not repackage or present our content as your own</li>
-    <li>Access is granted for personal, non-commercial use only</li>
-    <li>Violations will be pursued under applicable copyright law</li>
+    <li>You <strong>may</strong> read, study, and apply the strategies within our materials for your own personal use</li>
+    <li>You <strong>may</strong> save or print a personal copy of the materials for your own reference</li>
+    <li>You <strong>may not</strong> copy, reproduce, share, distribute, upload, or publish any part of our materials — in whole or in part — on any platform or by any means</li>
+    <li>You <strong>may not</strong> resell, sublicence, or repackage our content as your own product or service</li>
+    <li>You <strong>may not</strong> use our content for commercial purposes or in any way that generates revenue for a third party</li>
+    <li>Violations of this licence will be pursued under applicable copyright law</li>
   </ul>
-  <p>To report misuse or unauthorised distribution, contact: system@myonlyprofit.com</p>
+  <p>All content within our products — including but not limited to text, strategies, systems, frameworks, and structure — is the exclusive intellectual property of MYONLYPROFIT and is protected under copyright law. To report misuse or unauthorised distribution, contact: system@myonlyprofit.com</p>
 
-  <h2><span class="num">06</span> Payments</h2>
-  <p>All payments are processed securely by Stripe, Inc. MYONLYPROFIT does not store your card details. Prices are listed in Euros (€). By purchasing, you authorise Stripe to charge the stated amount to your selected payment method.</p>
-
-<h2 id="disclaimer"><span class="num">07</span> Disclaimer & Results</h2>
-<p>Our materials contain strategy, education, and frameworks based on real creator data. However:</p>
-<ul>
-    <li>Results are not guaranteed and will vary based on individual effort, niche, and market conditions</li>
-    <li>We make no promise of specific income, follower counts, or business outcomes</li>
-    <li>Testimonials and case studies reflect individual experiences and are not typical results</li>
-    <li>Our content is for informational and educational purposes only</li>
+  <h2><span class="num">06</span> Platform Availability & Technical Issues</h2>
+  <p>Our materials — in particular Empire — are hosted on our website and accessible via a password. While we make every reasonable effort to ensure continuous availability, we do not guarantee uninterrupted access at all times.</p>
+  <div class="callout">
+    <p><strong>MYONLYPROFIT accepts no liability for any downtime, technical failures, outages, server errors, or any other interruption to the availability of our website or hosted materials.</strong> This includes but is not limited to scheduled maintenance, hosting provider failures, third-party service disruptions, cyberattacks, or any circumstances beyond our reasonable control.</p>
+  </div>
+  <ul>
+    <li>We are not liable for any losses, damages, or inconvenience caused by temporary or extended periods of unavailability</li>
+    <li>We are not responsible if our website, hosting infrastructure, or any associated service ceases to operate for any reason</li>
+    <li>In the event of a prolonged technical issue on our end, we will — at our sole discretion and as a goodwill gesture — send the relevant materials directly to your registered email after a reasonable period of time has elapsed</li>
+    <li>This voluntary action does not constitute an obligation, a contractual commitment, or grounds for a refund claim</li>
   </ul>
+  <p>If you experience any issue accessing your purchased materials, contact us at <strong>system@myonlyprofit.com</strong> and we will do our best to assist you and deliver your content manually as quickly as possible.</p>
 
-  <h2><span class="num">08</span> Eligibility</h2>
-  <p>By purchasing, you confirm that you are at least 18 years of age. Our products relate to adult content creation and monetisation — they are not intended for or sold to minors.</p>
+  <h2><span class="num">07</span> Disclaimer & No Guarantee of Results</h2>
+  <p>Our materials contain educational strategies, frameworks, and information based on real-world creator data and experience. However, we make no guarantee of any specific outcome.</p>
+  <ul>
+    <li>Results will vary based on individual effort, niche, audience, platform conditions, and a wide range of personal and external factors</li>
+    <li>We make no promise or representation of specific income, follower counts, subscriber growth, or any other business or financial outcome</li>
+    <li>Any figures, examples, or case studies referenced in our materials reflect individual experiences and are not to be interpreted as typical, average, or guaranteed results</li>
+    <li>Our content is provided strictly for informational and educational purposes only</li>
+    <li>Nothing in our materials constitutes financial, legal, or professional advice</li>
+  </ul>
+  <p>MYONLYPROFIT shall not be held liable for any direct, indirect, incidental, consequential, or special damages arising from your use of — or inability to use — our materials, including any decisions made based on the content of our products.</p>
 
-  <h2><span class="num">09</span> Governing Law</h2>
-  <p>These Terms are governed by the laws of Finland. Any disputes arising from or related to these Terms shall be subject to the exclusive jurisdiction of Finnish courts.</p>
+  <h2><span class="num">08</span> Payments</h2>
+  <p>All payments are processed securely by Stripe, Inc. MYONLYPROFIT does not store, access, or process your card or banking details at any point. Prices are displayed in Euros (€). By completing a purchase, you authorise Stripe to charge the stated amount to your selected payment method. Any payment disputes should be raised with us directly before initiating a chargeback — we will always attempt to resolve issues in good faith.</p>
 
-  <h2><span class="num">10</span> Changes to These Terms</h2>
-  <p>We may update these Terms at any time. The updated version will be published at myonlyprofit.com/terms.html with a new effective date. Continued use of our website or products after changes constitutes acceptance.</p>
+  <h2><span class="num">09</span> Eligibility</h2>
+  <p>By purchasing any product from MYONLYPROFIT, you confirm that you are at least 18 years of age. Our products relate to adult content creation and monetisation strategies. They are not intended for and must not be purchased by or made available to minors under any circumstances.</p>
 
-  <h2><span class="num">11</span> Contact</h2>
+  <h2><span class="num">10</span> Limitation of Liability</h2>
+  <p>To the fullest extent permitted by applicable law, MYONLYPROFIT, its owners, operators, and affiliates shall not be liable for any loss or damage of any kind arising out of or in connection with:</p>
+  <ul>
+    <li>Your use of, or inability to use, our digital products or website</li>
+    <li>Any technical failure, downtime, data loss, or service interruption</li>
+    <li>Any reliance placed on information contained within our materials</li>
+    <li>Any decisions made, actions taken, or outcomes resulting from the application of our strategies</li>
+    <li>Any third-party platforms, services, or tools referenced within our materials</li>
+  </ul>
+  <p>Our total liability to you under any circumstances shall not exceed the amount you paid for the product in question.</p>
+
+  <h2><span class="num">11</span> Governing Law</h2>
+  <p>These Terms of Service are governed by and construed in accordance with the laws of Finland. Any disputes arising from or related to these Terms, your purchase, or your use of our materials shall be subject to the exclusive jurisdiction of Finnish courts. If any provision of these Terms is found to be unenforceable, the remaining provisions shall continue in full force and effect.</p>
+
+  <h2><span class="num">12</span> Changes to These Terms</h2>
+  <p>We reserve the right to update or modify these Terms at any time. The most current version will always be published at myonlyprofit.com/terms.html with an updated effective date. Your continued use of our website or materials following any changes constitutes your acceptance of the revised Terms.</p>
+
+  <h2><span class="num">13</span> Contact</h2>
+  <p>For any questions, delivery issues, or support requests, please contact us. We will always do our best to assist you promptly.</p>
   <div class="contact-box">
-    <span class="contact-box-label">Questions about these Terms?</span>
+    <span class="contact-box-label">Questions or delivery issues?</span>
     <a href="mailto:system@myonlyprofit.com">system@myonlyprofit.com</a>
   </div>
 </div>
